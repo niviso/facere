@@ -2,11 +2,11 @@ import { Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useState, useRef } from "react";
 import * as Haptics from 'expo-haptics';
 
-export default function Jumbotron({ onSubmit }: any) {
+export default function Jumbotron({ onSubmit,leftBtnAction,headline,onUpdateHeadline }: any) {
     const inputRef = useRef<any>(null);
     const [input, onInput] = useState("");
     const [edit, setEdit] = useState(false);
-    const [name, setName] = useState("Todo list");
+    const [name, setName] = useState(headline);
 
     function _onSubmit(e) {
         onSubmit(input);
@@ -27,6 +27,7 @@ export default function Jumbotron({ onSubmit }: any) {
                 Haptics.NotificationFeedbackType.Success
             )
             setEdit(false);
+            onUpdateHeadline(name);
         } else {
             Haptics.notificationAsync(
                 Haptics.NotificationFeedbackType.Warning
@@ -37,9 +38,10 @@ export default function Jumbotron({ onSubmit }: any) {
 
     //Credits for image: https://commons.wikimedia.org/wiki/File:Alto%27s_Adventure_animation_-_01_Chasm.gif
     return (
-        <View style={{ position: "relative" }}>
+        <View style={{ position: "relative",height:200 }}>
             <Image style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} resizeMode="stretch" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Alto%27s_Adventure_animation_-_01_Chasm.gif" }} />
-            <View style={{ padding: 10,paddingTop: 70, width: "100%", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+            <TouchableOpacity onPress={leftBtnAction} style={{position:"absolute",zIndex:1,top:50,left:20,padding: 10}}><Text>← Go back</Text></TouchableOpacity>
+            <View style={{ padding: 10,paddingTop: 100, width: "100%", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                 <TouchableOpacity onLongPress={toggleEdit} style={{ backgroundColor: "rgba(255,255,255,0.7)",padding: 5,paddingLeft: 20,paddingRight: 20, borderRadius: 10 }}>
                     {!edit && <Text style={{ fontSize: 24 }}>{name}</Text>}
                     {edit && <TextInput autoFocus style={{ fontSize: 24 }} value={name} onChangeText={setName} onSubmitEditing={toggleEdit} />}

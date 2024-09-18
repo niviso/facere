@@ -12,20 +12,28 @@ interface ItemProps {
     complete: boolean;
     hasBeenUpdated: boolean;
     toggleItemComplete: Function;
+    onDelete: Function;
+    isImportant: boolean;
+    toggleImportant: Function;
 }
 
-function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated }: ItemProps) {
+export function Card({children}){
+
+}
+function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated,isImportant,onDelete,toggleImportant }: ItemProps) {
     const [edit, setEdit] = useState(false);
     const styles = StyleSheet.create({
         container: {
             width: "100%",
             padding: 10,
             borderBottomWidth: 1,
-            borderColor: "rgba(0,0,0,0.1)",
+            borderTopWidth: isImportant ? 1 : 0,
+            borderColor: isImportant ? "black" : "rgba(0,0,0,0.1)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
+            backgroundColor: isImportant ? "#FEF3C7" : "white"
         },
         innerContainer: {
             display: "flex",
@@ -60,7 +68,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
             outputRange: [-100, 0, 0, 1],
         });
         return (
-            <TouchableOpacity style={{ height: "100%" }}>
+            <TouchableOpacity style={{ height: "100%" }} onPress={() => onDelete(id)}>
                 <Animated.View style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
                     padding: 10,
@@ -83,7 +91,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
     };
     return (
         <Swipeable renderLeftActions={renderLeftActions} overshootLeft={true} onSwipeableOpen={(e) => console.log(e)}>
-            <View style={styles.container}>
+            <TouchableOpacity style={styles.container} onLongPress={() => toggleImportant(id)}>
                 <View style={styles.innerContainer}>
                     <Text style={styles.topText}>{hasBeenUpdated && "Updated "}{moment(timestamp).fromNow()}</Text>
                     <Text numberOfLines={1} style={{ width: "80%",textDecorationLine: !complete ? "none" : "line-through", color: complete ? "grey" : "black" }}>{text}</Text>
@@ -97,7 +105,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
                         style={{ padding: 0, margin: 0 }}
                     />
                 </View>
-            </View>
+            </TouchableOpacity>
         </Swipeable>
     )
 }
