@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
 
@@ -15,6 +15,7 @@ interface NavBarProps {
     children: ReactElement;
 }
 export default function NavigationBar({ leftBtn, rightBtn, headline,children }: NavBarProps) {
+    const windowWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         wrapper: {
             height: 120,
@@ -46,7 +47,8 @@ export default function NavigationBar({ leftBtn, rightBtn, headline,children }: 
             textAlign: "center",
             fontSize: leftBtn && rightBtn ? 22 : 32,
             color: "black",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            maxWidth: windowWidth - 230 // 200 + 30 padding
         },
         actionBtnText: {
             fontSize: 16
@@ -61,7 +63,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headline,children }: 
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
-                <Text style={styles.headlineText}>{headline}</Text>
+                <Text numberOfLines={1} style={styles.headlineText}>{headline}</Text>
                 {leftBtn &&
                     <TouchableOpacity onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>

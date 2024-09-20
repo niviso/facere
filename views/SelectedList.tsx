@@ -78,6 +78,7 @@ function PrefilledPrompt({ visible, defaultValue, onSubmit, onCancel }:any) {
 export default function SelectedList({ setView, data }: any) {
   const [list, setList] = useState<any>([]);
   const [showEdit,setShowEdit] = useState<boolean>(false);
+  const [name,setName] = useState<string>(data.name);
   async function fetchList() {
     const result = await Store.get(data.id);
     if (result) {
@@ -103,6 +104,7 @@ export default function SelectedList({ setView, data }: any) {
         list.name = name;
         list.hasBeenUpdated = true;
         list.timestamp = new Date();
+        setName(name);
       }
     }
     await Store.set("lists", result);
@@ -111,7 +113,7 @@ export default function SelectedList({ setView, data }: any) {
 
   return (
     <ScrollView style={{ width: "100%" }}>
-      <NavigationBar headline={data.name} rightBtn={{ text: "Go back", icon: "chevron-back-outline", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setShowEdit(true) }}>
+      <NavigationBar headline={name} rightBtn={{ text: "Go back", icon: "chevron-back-outline", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setShowEdit(true) }}>
         <View style={{ paddingLeft: 15, paddingRight: 15, paddingBottom: 15 }}>
           <TextInput
             style={{
