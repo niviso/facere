@@ -1,84 +1,13 @@
 import Store from "../store";
-import { List, NavigationBar } from "../components";
+import { List, NavigationBar,Input } from "../components";
 import { useState, useEffect } from "react";
-import { ScrollView, View, TextInput,Modal,StyleSheet,Text,Button } from "react-native";
-
-function PrefilledPrompt({ visible, defaultValue, onSubmit, onCancel }:any) {
-  const [inputValue, setInputValue] = useState(defaultValue);
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: 'rgba(0,0,0,0.5)',
-    },
-    modalContent: {
-      backgroundColor: 'white',
-      padding: 15,
-      margin: 15,
-      borderRadius: 10,
-      alignItems: 'center',
-    },
-    promptText: {
-      fontSize: 16,
-      marginBottom: 15,
-      fontWeight: "bold"
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: '#ccc',
-      width: "100%",
-      padding: 10,
-      borderRadius: 5,
-    },
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: '100%',
-    },
-    rowContainer: {
-      display: "flex",
-      gap: 15,
-      flexDirection: "row",
-      alignItems:"center",
-      flexWrap: "wrap"
-    },
-    rowText: {
-      fontSize: 16
-    }
-  });
-  return (
-    <Modal visible={visible} transparent={true} animationType="fade">
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <Text style={styles.promptText}>List settings</Text>
-          <View style={styles.rowContainer}>
-          <Text style={styles.rowText}>Name</Text>
-          <TextInput
-            style={styles.input}
-            value={inputValue}
-            autoFocus={true}
-            onChangeText={(text) => setInputValue(text)}
-          />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button title="Cancel" onPress={onCancel} />
-            <Button title="Submit" onPress={() => onSubmit(inputValue)} />
-          </View>
-        </View>
-      </View>
-    </Modal>
-  );
-};
+import { ScrollView, View, TextInput, Text,TouchableOpacity } from "react-native";
+import * as Haptics from 'expo-haptics';
 
 export default function SelectedList({ setView, data }: any) {
   const [list, setList] = useState<any>([]);
-  const [showEdit,setShowEdit] = useState<boolean>(false);
-  const [name,setName] = useState<string>(data.name);
+  const [showEdit, setShowEdit] = useState<boolean>(false);
+  const [name, setName] = useState<string>(data.name);
   async function fetchList() {
     const result = await Store.get(data.id);
     if (result) {
@@ -90,6 +19,7 @@ export default function SelectedList({ setView, data }: any) {
   useEffect(() => {
     fetchList();
   }, []);
+
   async function onSubmitNewItem(input: string) {
     const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
     const newListItem = [{ id: newId, text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
@@ -105,30 +35,38 @@ export default function SelectedList({ setView, data }: any) {
         list.hasBeenUpdated = true;
         list.timestamp = new Date();
         setName(name);
+        toggleEdit();
       }
     }
     await Store.set("lists", result);
   }
 
+  function toggleEdit() {
+    if (showEdit) {
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Success
+      )
+      setShowEdit(false);
+    } else {
+      Haptics.notificationAsync(
+        Haptics.NotificationFeedbackType.Warning
+      )
+      setShowEdit(true);
+    }
+  }
 
+  const HeadlineElement = () => {
+    return (
+      !showEdit ? <TouchableOpacity onLongPress={toggleEdit}><Text numberOfLines={1} style={{ fontSize: 22,fontWeight:"bold" }}>{name}</Text></TouchableOpacity> :
+        <Input style={{ fontSize: 22,fontWeight:"bold" }} value={name} onSubmitEditing={updateList} autoFocus />
+    )
+  }
   return (
     <ScrollView style={{ width: "100%" }}>
-      <NavigationBar headline={name} rightBtn={{ text: "Go back", icon: "chevron-back-outline", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setShowEdit(true) }}>
-        <View style={{ paddingLeft: 15, paddingRight: 15, paddingBottom: 15 }}>
-          <TextInput
-            style={{
-              height: 40,
-              padding: 15,
-              borderRadius: 15,
-              backgroundColor: "rgba(0,0,0,0.1)",
-            }}
-            placeholder="Add todo"
-            placeholderTextColor="rgba(0,0,0,0.7)"
-          />
-        </View>
+      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: "Back", icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setShowEdit(true) }}>
+        <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
       </NavigationBar>
       <List data={data} setList={setList} list={list} />
-      <PrefilledPrompt visible={showEdit} defaultValue={data.name} onSubmit={updateList} onCancel={() => setShowEdit(false)} />
     </ScrollView>
   )
 }

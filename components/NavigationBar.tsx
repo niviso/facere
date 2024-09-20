@@ -11,23 +11,27 @@ interface ActionButton {
 interface NavBarProps {
     leftBtn?: ActionButton | any;
     rightBtn?: ActionButton | any;
-    headline: string;
+    headlineElement?: any;
+    headlineText?: string;
     children: ReactElement;
 }
-export default function NavigationBar({ leftBtn, rightBtn, headline,children }: NavBarProps) {
+export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headlineText,children }: NavBarProps) {
     const windowWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         wrapper: {
-            height: 120,
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingTop: 70,
             paddingBottom: 15,
             width: "100%",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
+            height: 120,
+            paddingTop: 70
+        },
+        topWrapper:{
+            paddingLeft: 15,
+            paddingRight: 15,
+            paddingBottom: 15,
         },
         rightBtnWrapper: {
             display: "flex",
@@ -55,19 +59,21 @@ export default function NavigationBar({ leftBtn, rightBtn, headline,children }: 
         }
     });
     return (
-        <View>
+        <View style={styles.topWrapper}>
             <View style={styles.wrapper}>
                 {rightBtn &&
                     <TouchableOpacity onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={20} color="rgba(0,0,0,0.8)" />}
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={18} color="rgba(0,0,0,0.8)" style={{paddingRight: 5}} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
-                <Text numberOfLines={1} style={styles.headlineText}>{headline}</Text>
+                {headlineText && !headlineElement &&  <Text numberOfLines={1} style={styles.headlineText}>{headlineText}</Text>}
+                {headlineElement && <View style={styles.headlineText}>{headlineElement}</View>}
+
                 {leftBtn &&
                     <TouchableOpacity onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={20} color="rgba(0,0,0,0.8)" />}
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={18} color="rgba(0,0,0,0.8)" style={{paddingLeft: 5}} />}
                     </TouchableOpacity>
                 }
             </View>

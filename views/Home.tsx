@@ -1,7 +1,7 @@
 import { View, ScrollView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import moment from 'moment';
 import Store from "../store";
-import { Card, NavigationBar } from "../components";
+import { Card, NavigationBar, Input } from "../components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -69,20 +69,8 @@ export default function Home({ setView, view, data }: any) {
 
     return (
         <View style={styles.wrapper}>
-            <NavigationBar headline={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
-            <View style={{ paddingLeft: 15, paddingRight: 15, paddingBottom: 15 }}>
-                <TextInput
-                    style={{
-                        height: 40,
-                        padding: 15,
-                        borderRadius: 15,
-                        width: "100%",
-                        backgroundColor: "rgba(0,0,0,0.1)",
-                    }}
-                    placeholder="Search"
-                    placeholderTextColor="rgba(0,0,0,0.7)"
-                />
-            </View>
+            <NavigationBar headlineText={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
+                <Input placeholder="Search"/>
             </NavigationBar>
             <ScrollView>
                 {
