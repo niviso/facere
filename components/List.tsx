@@ -6,7 +6,7 @@ import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-export default function List({setView,data}:any){
+export default function List({data,list,setList}:any){
     async function save(obj: any) {
         await Store.set(data.id, obj);
       }
@@ -18,19 +18,7 @@ export default function List({setView,data}:any){
         }
       }
 
-      async function updateList(name){
-        let result = await Store.get("lists");
-        for (let list of result) {
-            if (list.id == data.id) {
-              list.name = name;
-              list.hasBeenUpdated = true;
-              list.timestamp = new Date();
-            }
-          }
-          await Store.set("lists",result);
-      }
     
-      const [list, setList] = useState<any>([]);
       useEffect(() => {
         fetchList();
       }, []);
@@ -74,21 +62,10 @@ export default function List({setView,data}:any){
         save(tmpList);
       }
     
-    
-      function onSubmit(input: string) {
-        const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
-        const newList = [{ id: newId, text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
-        setList(newList);
-        save(newList);
-      }
-    
       return (
         <View>
-          <Jumbotron headline={data.name} onSubmit={onSubmit} onUpdateHeadline={updateList} leftBtnAction={() => setView("Home")} />
-          <ScrollView style={{ width: "100%" }}>
             {list.map((item: any, index: number) => <Item key={`list-${index}`} {...item} toggleImportant={toggleImportant} onDelete={deleteItem} toggleItemComplete={toggleItemComplete} />)}
             {!list.length && <View style={{ width: "100%", height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 }}><FontAwesome5 name="star" size={40} color="black" /><Text style={{ marginTop:20,fontSize: 24,fontWeight:"bold" }}>Empty list</Text></View>}
-          </ScrollView>
         </View>
       );
 }

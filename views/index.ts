@@ -1,10 +1,10 @@
 import Home from "./Home";
-import List from "../components/List";
+import SelectedList from "./SelectedList";
 import Start from "./Start";
 
 const Router = [
     Start,
     Home,
-    List
+    SelectedList
 ]
 export default Router;

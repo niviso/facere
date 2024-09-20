@@ -25,7 +25,7 @@ export default function Home({ setView, data }: any) {
         const result = [...lists, obj];
         setLists(result);
         save(result);
-        setView("List", obj);
+        setView("SelectedList", obj);
     }
 
     useEffect(() => {
@@ -88,11 +88,11 @@ export default function Home({ setView, data }: any) {
             <ScrollView>
                     {
                     search.length == 0 && lists.map((list:any) => {
-                        return (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('List', list)} cta={<AntDesign name="right" size={16} color="black" />}/>)
+                        return (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />}/>)
                     })}
                     {
                     search.length !== 0 && lists.map((list:any) => {
-                        return search.toLowerCase().includes(list.name.toLowerCase()) && (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('List', list)} cta={<AntDesign name="right" size={16} color="black" />}/>)
+                        return search.toLowerCase().includes(list.name.toLowerCase()) && (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />}/>)
                     })}
             </ScrollView>
             <View style={{ position: "absolute", bottom: 30, right: 30 }}>
