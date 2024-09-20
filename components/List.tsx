@@ -1,6 +1,5 @@
 import { Text, View } from 'react-native';
 import Store from "../store";
-import { useEffect } from "react";
 import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';

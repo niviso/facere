@@ -1,5 +1,5 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Animated, TouchableOpacity } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import moment from 'moment';

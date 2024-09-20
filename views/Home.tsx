@@ -69,7 +69,7 @@ export default function Home({ setView, view, data }: any) {
 
     return (
         <View style={styles.wrapper}>
-            <NavigationBar headline={view.route} leftBtn={{ text: "Create list", onPress: createList }} />
+            <NavigationBar headline={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
             <View style={{ paddingLeft: 15, paddingRight: 15, paddingBottom: 15 }}>
                 <TextInput
                     style={{
@@ -83,6 +83,7 @@ export default function Home({ setView, view, data }: any) {
                     placeholderTextColor="rgba(0,0,0,0.7)"
                 />
             </View>
+            </NavigationBar>
             <ScrollView>
                 {
                     search.length == 0 && lists.map((list: any) => {
