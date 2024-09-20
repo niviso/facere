@@ -1,7 +1,6 @@
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View } from 'react-native';
 import Store from "../store";
-import { useState, useEffect } from "react";
-import Jumbotron from "./Jumbotron";
+import { useEffect } from "react";
 import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -10,18 +9,6 @@ export default function List({data,list,setList}:any){
     async function save(obj: any) {
         await Store.set(data.id, obj);
       }
-    
-      async function fetchList() {
-        const result = await Store.get(data.id);
-        if (result) {
-          setList(result);
-        }
-      }
-
-    
-      useEffect(() => {
-        fetchList();
-      }, []);
     
       function toggleItemComplete(value: boolean, id: string) {
         const tmpList = JSON.parse(JSON.stringify(list));

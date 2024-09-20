@@ -1,19 +1,16 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 interface CardProps {
     id: string;
     eyebrow?: string;
     text: string;
     cta?: ReactElement;
-    onPress?: Function;
+    onPress?: Function | any;
     backgroundColor?: string;
-    onLongPress?: string;
+    onLongPress?: Function | any;
     inactive?: boolean;
 }
 
-function CardCta({ children }: any) {
-    return <>{children}</>
-}
 export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, onLongPress, inactive }: CardProps) {
     const styles = StyleSheet.create({
         container: {
@@ -27,6 +24,8 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
+            backgroundColor: backgroundColor ? backgroundColor : "white",
+            opacity: inactive ? 0.5 : 1
         },
         innerContainer: {
             display: "flex",
@@ -45,21 +44,17 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             fontSize: 12,
             opacity: 0.5
         },
-        text: {
-            width: "80%", color: "black"
-        },
-        ctaText: {
-
+        mainText: {
+            width: "80%",
+            color: "black",
+            textDecorationLine: inactive ? 'line-through' : undefined
         }
     });
     return (
-        <TouchableOpacity style={{
-            ...styles.container, backgroundColor: backgroundColor ? backgroundColor : "white",
-            opacity: inactive ? 0.5 : 1
-        }} onPress={onPress} onLongPress={onLongPress}>
+        <TouchableOpacity id={id} style={styles.container} onPress={onPress} onLongPress={onLongPress}>
             <View style={styles.innerContainer}>
                 <Text style={styles.eyebrowText}>{eyebrow}</Text>
-                <Text numberOfLines={1} style={styles.text}>{text}</Text>
+                <Text numberOfLines={1} style={styles.mainText}>{text}</Text>
             </View>
             <View>
                 {cta}
