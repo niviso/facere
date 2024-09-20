@@ -1,5 +1,5 @@
 import Store from "../store";
-import {Jumbotron, List} from "../components";
+import {Jumbotron, List, NavigationBar} from "../components";
 import {useState,useEffect} from "react";
 import {ScrollView} from "react-native";
 export default function SelectedList({setView,data}:any){
@@ -34,7 +34,8 @@ export default function SelectedList({setView,data}:any){
       }
     return (
         <ScrollView style={{ width: "100%" }}>
-            <Jumbotron headline={data.name} onSubmit={onSubmitNewItem} onUpdateHeadline={updateList} leftBtnAction={() => setView("Home")} />
+            {false && <Jumbotron headline={data.name} onSubmit={onSubmitNewItem} onUpdateHeadline={updateList} leftBtnAction={() => setView("Home")} />}
+            <NavigationBar headline={data.name} rightBtn={{ text: "Go back", icon:"chevron-back-outline", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setView("Home") }}/>
             <List data={data} setList={setList} list={list}/>
         </ScrollView>
     )

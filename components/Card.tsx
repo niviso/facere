@@ -25,7 +25,6 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             alignItems: "center",
             flexDirection: "row",
             backgroundColor: backgroundColor ? backgroundColor : "white",
-            opacity: inactive ? 0.5 : 1
         },
         innerContainer: {
             display: "flex",

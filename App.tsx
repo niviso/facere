@@ -18,7 +18,7 @@ export default function App() {
     <GestureHandlerRootView>
       {Router.map((Component:any,index:number) => {
           if(Component.name == view.route){
-          return <View key={index}><Component setView={updateView} data={view.data} /></View>
+          return <View key={index}><Component view={view} setView={updateView} data={view.data} /></View>
           }
       })}
     </GestureHandlerRootView>

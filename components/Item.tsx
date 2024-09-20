@@ -62,11 +62,16 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
     };
     return (
         <Swipeable renderLeftActions={renderLeftActions} overshootLeft={true} onSwipeableOpen={(e) => console.log(e)}>
-            <Card id={id} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? "#ffdc73" : "white"} onLongPress={() => toggleImportant(id)} cta={<BouncyCheckbox
+            <Card id={id} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? "#ffdc73" : "white"} onLongPress={() => toggleImportant(id)} cta={
+                <BouncyCheckbox
                 fillColor="green"
                 isChecked={complete}
                 onPress={toggle}
-                size={25}
+                size={22}
+                textContainerStyle={{
+                    marginLeft: 0
+                }}
+                style={{marginLeft:0,marginRight:0}}
             />} />
         </Swipeable>
     )
