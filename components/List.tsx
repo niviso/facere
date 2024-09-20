@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Jumbotron from "./Jumbotron";
 import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function List({setView,data}:any){
     async function save(obj: any) {
@@ -41,15 +42,16 @@ export default function List({setView,data}:any){
             item.complete = value;
             item.hasBeenUpdated = true;
             item.timestamp = new Date();
+            setList(tmpList);
+            save(tmpList);
+            return;
           }
         }
-        setList(tmpList);
-        save(tmpList);
       }
     
       function deleteItem(id: string) {
         const tmpList = JSON.parse(JSON.stringify(list));
-        const result = tmpList.filter((item) => item.id !== id);
+        const result = tmpList.filter((item:any) => item.id !== id);
         setList(result);
         save(result);
       }
@@ -85,8 +87,7 @@ export default function List({setView,data}:any){
           <Jumbotron headline={data.name} onSubmit={onSubmit} onUpdateHeadline={updateList} leftBtnAction={() => setView("Home")} />
           <ScrollView style={{ width: "100%" }}>
             {list.map((item: any, index: number) => <Item key={`list-${index}`} {...item} toggleImportant={toggleImportant} onDelete={deleteItem} toggleItemComplete={toggleItemComplete} />)}
-            {!list.length && <View style={{ width: "100%", height: 200, flex: 1, alignItems: "center", justifyContent: "center" }}><Text style={{ fontSize: 30, opacity: 0.3 }}>:/ Empty list</Text></View>}
-          <Text>{JSON.stringify(data)}</Text>
+            {!list.length && <View style={{ width: "100%", height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 }}><FontAwesome5 name="star" size={40} color="black" /><Text style={{ marginTop:20,fontSize: 24,fontWeight:"bold" }}>Empty list</Text></View>}
           </ScrollView>
         </View>
       );

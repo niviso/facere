@@ -40,7 +40,7 @@ export default function Jumbotron({ onSubmit,leftBtnAction,headline,onUpdateHead
     return (
         <View style={{ position: "relative",height:200 }}>
             <Image style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }} resizeMode="stretch" source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Alto%27s_Adventure_animation_-_01_Chasm.gif" }} />
-            <TouchableOpacity onPress={leftBtnAction} style={{position:"absolute",zIndex:1,top:50,left:20,padding: 10}}><Text>← Go back</Text></TouchableOpacity>
+            <TouchableOpacity onPress={leftBtnAction} style={{position:"absolute",zIndex:1,top:50,left:10,padding: 10}}><Text style={{fontSize: 16}}>← Go back</Text></TouchableOpacity>
             <View style={{ padding: 10,paddingTop: 100, width: "100%", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                 <TouchableOpacity onLongPress={toggleEdit} style={{ backgroundColor: "rgba(255,255,255,0.7)",padding: 5,paddingLeft: 20,paddingRight: 20, borderRadius: 10 }}>
                     {!edit && <Text style={{ fontSize: 24 }}>{name}</Text>}

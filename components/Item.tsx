@@ -4,6 +4,7 @@ import * as Haptics from 'expo-haptics';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import moment from 'moment';
 import { useState } from "react";
+import Card from "./Card";
 
 interface ItemProps {
     id: string;
@@ -17,11 +18,8 @@ interface ItemProps {
     toggleImportant: Function;
 }
 
-export function Card({children}){
-
-}
-function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated,isImportant,onDelete,toggleImportant }: ItemProps) {
-    const [edit, setEdit] = useState(false);
+function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated, isImportant, onDelete, toggleImportant }: ItemProps) {
+    
     const styles = StyleSheet.create({
         container: {
             width: "100%",
@@ -59,8 +57,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
         } else {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
         }
-
-        toggleItemComplete(value,id);
+        toggleItemComplete(value, id);
     }
     const renderLeftActions = (progress, dragX) => {
         const trans = dragX.interpolate({
@@ -91,21 +88,13 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
     };
     return (
         <Swipeable renderLeftActions={renderLeftActions} overshootLeft={true} onSwipeableOpen={(e) => console.log(e)}>
-            <TouchableOpacity style={styles.container} onLongPress={() => toggleImportant(id)}>
-                <View style={styles.innerContainer}>
-                    <Text style={styles.topText}>{hasBeenUpdated && "Updated "}{moment(timestamp).fromNow()}</Text>
-                    <Text numberOfLines={1} style={{ width: "80%",textDecorationLine: !complete ? "none" : "line-through", color: complete ? "grey" : "black" }}>{text}</Text>
-                </View>
-                <View>
-                    <BouncyCheckbox
-                    fillColor="green"
-                    isChecked={complete}
-                        onPress={toggle}
-                        size={25}
-                        style={{ padding: 0, margin: 0 }}
-                    />
-                </View>
-            </TouchableOpacity>
+            <Card text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? "lightgrey" : "white"} onLongPress={() => toggleImportant(id)} cta={<BouncyCheckbox
+                fillColor="green"
+                isChecked={complete}
+                onPress={toggle}
+                size={25}
+                style={{ padding: 0, margin: 0 }}
+            />}/>
         </Swipeable>
     )
 }
