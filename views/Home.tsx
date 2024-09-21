@@ -65,7 +65,12 @@ export default function Home({ setView, view, data }: any) {
             width: "100%", height: "100%"
         },
     });
-
+    function onDelete(id:string) {
+        const result = lists.filter((item:any) => item.id !== id);
+        setLists(result);
+        save(result);
+        Store.delete(id);
+      }
 
     return (
         <View style={styles.wrapper}>
@@ -75,12 +80,12 @@ export default function Home({ setView, view, data }: any) {
             <ScrollView>
                 {
                     search.length == 0 && lists.map((list: any) => {
-                        return (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={20} color="rgba(0,0,0,0.8)" />
+                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={20} color="rgba(0,0,0,0.8)" />
                         } />)
                     })}
                 {
                     search.length !== 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />} />)
                     })}
             </ScrollView>
         </View>

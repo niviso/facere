@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet,Animated } from "react-native";
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+
 interface CardProps {
     id: string;
     eyebrow?: string;
@@ -9,9 +11,10 @@ interface CardProps {
     backgroundColor?: string;
     onLongPress?: Function | any;
     inactive?: boolean;
+    onDelete: Function;
 }
 
-export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, onLongPress, inactive }: CardProps) {
+export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, onLongPress, inactive,onDelete }: CardProps) {
     const styles = StyleSheet.create({
         container: {
             width: "100%",
@@ -49,7 +52,41 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             textDecorationLine: inactive ? 'line-through' : undefined
         }
     });
+    const renderLeftActions = (progress: any, dragX: any) => {
+        const styles = StyleSheet.create({
+            swipableLeftButton: {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 10,
+                width: 100,
+                height: "100%",
+                backgroundColor: "#ff0f0f",
+            },
+            swipableLeftButtonText: {
+                fontSize: 18,
+                color: "white"
+            },
+            swipableLeftWrapper: {
+                height: "100%"
+            }
+        });
+        const trans = dragX.interpolate({
+            inputRange: [0, 100, 100, 101],
+            outputRange: [-100, 0, 0, 1],
+        });
+        return (
+            <TouchableOpacity style={styles.swipableLeftWrapper} onPress={() => onDelete(id)}>
+                <Animated.View style={{ ...styles.swipableLeftButton, transform: [{ translateX: trans }], }}>
+                    <Text style={styles.swipableLeftButtonText}>
+                        Delete
+                    </Text>
+                </Animated.View>
+            </TouchableOpacity>
+        );
+    };
     return (
+        <Swipeable renderLeftActions={renderLeftActions} overshootLeft={true} onSwipeableOpen={(e) => console.log(e)}>
         <TouchableOpacity id={id} style={styles.container} onPress={onPress} onLongPress={onLongPress}>
             <View style={styles.innerContainer}>
                 <Text style={styles.eyebrowText}>{eyebrow}</Text>
@@ -59,6 +96,7 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
                 {cta}
             </View>
         </TouchableOpacity>
+        </Swipeable>
     )
 
 }

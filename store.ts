@@ -17,6 +17,13 @@ const Store = {
         } catch (e) {
             return e;
         }
+    },
+    delete: async (key:string) => {
+        try {
+             await AsyncStorage.removeItem(Store.baseKey + key);
+        } catch (e) {
+            return e;
+        }
     }
 }
 

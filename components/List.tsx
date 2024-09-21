@@ -24,8 +24,7 @@ export default function List({data,list,setList}:any){
       }
     
       function deleteItem(id: string) {
-        const tmpList = JSON.parse(JSON.stringify(list));
-        const result = tmpList.filter((item:any) => item.id !== id);
+        const result = list.filter((item:any) => item.id !== id);
         setList(result);
         save(result);
       }
