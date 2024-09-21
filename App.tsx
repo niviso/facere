@@ -2,6 +2,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {useState} from "react";
 import {View} from "react-native";
 import Router from "./views";
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [view,setView] = useState<any>({route: "Home",data:{}});
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView>
+      <StatusBar style="dark" />
       {Router.map((Component:any,index:number) => {
           if(Component.name == view.route){
           return <View key={index}><Component view={view} setView={updateView} data={view.data} /></View>

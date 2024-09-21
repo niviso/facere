@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import moment from 'moment';
 import Card from "./Card";
-
+import {Size} from "../constants";
 interface ItemProps {
     id: string;
     text: string;
@@ -35,7 +35,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
                 fillColor="green"
                 isChecked={complete}
                 onPress={toggle}
-                size={22}
+                size={Size.Icon.lg}
                 textContainerStyle={{
                     marginLeft: 0
                 }}

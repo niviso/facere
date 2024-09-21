@@ -5,7 +5,7 @@ import { Card, NavigationBar, Input } from "../components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+import {Size} from "../constants";
 export default function Home({ setView, view, data }: any) {
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");
@@ -80,12 +80,12 @@ export default function Home({ setView, view, data }: any) {
             <ScrollView>
                 {
                     search.length == 0 && lists.map((list: any) => {
-                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={20} color="rgba(0,0,0,0.8)" />
+                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color="rgba(0,0,0,0.8)" />
                         } />)
                     })}
                 {
                     search.length !== 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
                     })}
             </ScrollView>
         </View>

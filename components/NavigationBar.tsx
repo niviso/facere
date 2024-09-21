@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
-
+import {Size} from "../constants";
 interface ActionButton {
     onPress: Function;
     text: string;
@@ -63,7 +63,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
             <View style={styles.wrapper}>
                 {rightBtn &&
                     <TouchableOpacity onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={18} color="rgba(0,0,0,0.8)" style={{paddingRight: 5}} />}
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color="rgba(0,0,0,0.8)" style={{paddingRight: 5}} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
@@ -73,7 +73,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
                 {leftBtn &&
                     <TouchableOpacity onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={18} color="rgba(0,0,0,0.8)" style={{paddingLeft: 5}} />}
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color="rgba(0,0,0,0.8)" style={{paddingLeft: 5}} />}
                     </TouchableOpacity>
                 }
             </View>
