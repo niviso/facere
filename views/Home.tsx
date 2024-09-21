@@ -70,7 +70,7 @@ export default function Home({ setView, view, data }: any) {
     return (
         <View style={styles.wrapper}>
             <NavigationBar headlineText={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
-                <Input placeholder="Search" onChangeText={setSearch}/>
+                <Input placeholder="Search" onChangeText={setSearch} />
             </NavigationBar>
             <ScrollView>
                 {

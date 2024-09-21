@@ -63,7 +63,7 @@ export default function SelectedList({ setView, data }: any) {
   }
   return (
     <ScrollView style={{ width: "100%" }}>
-      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: "Back", icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: "Edit", onPress: () => setShowEdit(true) }}>
+      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: "Back", icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: showEdit ? "Cancel" : "Edit", onPress: () => setShowEdit(!showEdit) }}>
         <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
       </NavigationBar>
       <List data={data} setList={setList} list={list} />
