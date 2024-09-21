@@ -17,10 +17,10 @@ export default function Start({ setView }) {
         }
     }
     return (
-        <TouchableOpacity onPress={unlock} style={{ width: "100%", height: "100%", backgroundColor: "orange", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Fontisto name="locked" size={100} color="white" />
-            <Text style={{ fontSize: 100, fontWeight: "bold", color: "white" }}>FACERE</Text>
-            <Text style={{ fontSize: 24, fontWeight: "light", color: "white" }}>Press anywhere to unlock</Text>
+        <TouchableOpacity onPress={unlock} style={{ width: "100%", height: "100%", backgroundColor: "white", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Fontisto name="locked" size={90} color="rgba(0,0,0,0.8)" />
+            <Text style={{ fontSize: 100, fontWeight: "bold", color: "rgba(0,0,0,0.8)" }}>FACERE</Text>
+            <Text style={{ fontSize: 24, fontWeight: "light", color: "rgba(0,0,0,0.8)" }}>Press anywhere to unlock</Text>
         </TouchableOpacity>
     )
 }

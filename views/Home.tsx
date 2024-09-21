@@ -70,7 +70,7 @@ export default function Home({ setView, view, data }: any) {
     return (
         <View style={styles.wrapper}>
             <NavigationBar headlineText={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
-                <Input placeholder="Search"/>
+                <Input placeholder="Search" onChangeText={setSearch}/>
             </NavigationBar>
             <ScrollView>
                 {
@@ -80,7 +80,7 @@ export default function Home({ setView, view, data }: any) {
                     })}
                 {
                     search.length !== 0 && lists.map((list: any) => {
-                        return search.toLowerCase().includes(list.name.toLowerCase()) && (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={16} color="black" />} />)
                     })}
             </ScrollView>
         </View>

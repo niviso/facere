@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text } from "react-native";
 export default function Input({ value, placeholder, onSubmitEditing, onChangeText, style, autoFocus, refocus }: any) {
     const [input, setInput] = useState<string>(value);
     const inputRef = useRef(null);
@@ -18,14 +18,14 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
 
     const styles = StyleSheet.create({
         input: {
-            height: 40,
-            padding: 15,
+            height: 44,
+            paddingLeft: 15,
             borderRadius: 15,
             backgroundColor: "rgba(0,0,0,0.1)",
         }
     });
     return (
-        <View>
+        <View style={{position: "relative"}}>
             <TextInput
                 style={style ? style : styles.input}
                 ref={inputRef}
