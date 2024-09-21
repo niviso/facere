@@ -1,7 +1,7 @@
 import Store from "../store";
-import { List, NavigationBar,Input } from "../components";
+import { List, NavigationBar,Input } from "@/components";
 import { useState, useEffect } from "react";
-import { ScrollView, View, TextInput, Text,TouchableOpacity } from "react-native";
+import { ScrollView, Text,TouchableOpacity } from "react-native";
 import * as Haptics from 'expo-haptics';
 
 export default function SelectedList({ setView, data }: any) {

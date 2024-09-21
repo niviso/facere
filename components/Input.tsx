@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 export default function Input({ value, placeholder, onSubmitEditing, onChangeText, style, autoFocus, refocus }: any) {
     const [input, setInput] = useState<string>(value);
     const inputRef = useRef(null);

@@ -3,7 +3,7 @@ import Store from "../store";
 import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import {Size} from "../constants";
+import {Size} from "@/constants";
 export default function List({data,list,setList}:any){
     async function save(obj: any) {
         await Store.set(data.id, obj);

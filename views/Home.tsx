@@ -1,11 +1,11 @@
 import { View, ScrollView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import moment from 'moment';
 import Store from "../store";
-import { Card, NavigationBar, Input } from "../components";
+import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {Size} from "../constants";
+import {Size} from "@/constants";
 export default function Home({ setView, view, data }: any) {
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");

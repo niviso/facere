@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
-import {Size} from "../constants";
+import {Size} from "@/constants";
 interface ActionButton {
     onPress: Function;
     text: string;

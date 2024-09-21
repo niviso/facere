@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import moment from 'moment';
 import Card from "./Card";
-import {Size} from "../constants";
+import {Size} from "@/constants";
 interface ItemProps {
     id: string;
     text: string;
