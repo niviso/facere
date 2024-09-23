@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import moment from 'moment';
 import Card from "./Card";
-import {Size} from "@/constants";
+import {Size, COLOR} from "@/constants";
 interface ItemProps {
     id: string;
     text: string;
@@ -30,9 +30,9 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
         toggleItemComplete(value, id);
     }
     return (
-            <Card id={id} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? "#ffdc73" : "white"} onLongPress={() => toggleImportant(id)} cta={
+            <Card id={id} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.INFO : "white"} onLongPress={() => toggleImportant(id)} cta={
                 <BouncyCheckbox
-                fillColor="green"
+                fillColor={COLOR.SUCCESS}
                 isChecked={complete}
                 onPress={toggle}
                 size={Size.Icon.lg}

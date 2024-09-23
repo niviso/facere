@@ -10,7 +10,8 @@ module.exports = function(api) {
         "alias": {
           "@/components": "./components/",
           "@/constants": "./constants/",
-          "@/views": "./views/"
+          "@/views": "./views/",
+          "locale": "./locale/",
         }
       }
     ]

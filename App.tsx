@@ -5,7 +5,7 @@ import Router from "./views";
 import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
-  const [view,setView] = useState<any>({route: "Home",data:{}});
+  const [view,setView] = useState<any>({route: "Start",data:{}});
   /*
   add to info.plist
   <key>NSFaceIDUsageDescription</key>

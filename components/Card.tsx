@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { View, Text, TouchableOpacity, StyleSheet,Animated } from "react-native";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-
+import {COLOR, Size} from "@/constants";
 interface CardProps {
     id: string;
     eyebrow?: string;
@@ -36,41 +36,42 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             gap: 5
         },
         baseText: {
-            fontSize: 18,
+            fontSize: Size.FONT.MD,
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
             textDecorationLine: "line-through",
         },
         eyebrowText: {
-            fontSize: 12,
-            opacity: 0.5
+            fontSize: Size.FONT.SM,
+            color: COLOR.BLACK
         },
         mainText: {
             width: "80%",
             color: "black",
-            textDecorationLine: inactive ? 'line-through' : undefined
+            textDecorationLine: inactive ? 'line-through' : undefined,
+            fontSize: 18
         }
     });
     const renderLeftActions = (progress: any, dragX: any) => {
-        const styles = StyleSheet.create({
-            swipableLeftButton: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 10,
-                width: 100,
-                height: "100%",
-                backgroundColor: "#ff0f0f",
-            },
-            swipableLeftButtonText: {
-                fontSize: 18,
-                color: "white"
-            },
-            swipableLeftWrapper: {
-                height: "100%"
-            }
-        });
+            const styles = StyleSheet.create({
+        swipableLeftButton: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 10,
+            width: 100,
+            height: "100%",
+            backgroundColor: "#ff0f0f",
+        },
+        swipableLeftButtonText: {
+            fontSize: Size.FONT.MD,
+            color: "white"
+        },
+        swipableLeftWrapper: {
+            height: "100%"
+        }
+    });
         const trans = dragX.interpolate({
             inputRange: [0, 100, 100, 101],
             outputRange: [-100, 0, 0, 1],
@@ -86,7 +87,7 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
         );
     };
     return (
-        <Swipeable renderLeftActions={renderLeftActions} overshootLeft={true} onSwipeableOpen={(e) => console.log(e)}>
+        <Swipeable renderLeftActions={renderLeftActions}>
         <TouchableOpacity id={id} style={styles.container} onPress={onPress} onLongPress={onLongPress}>
             <View style={styles.innerContainer}>
                 <Text style={styles.eyebrowText}>{eyebrow}</Text>

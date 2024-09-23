@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import moment from 'moment';
 import Store from "../store";
 import { Card, NavigationBar, Input } from "@/components";
@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {Size} from "@/constants";
+import {COLOR} from "@/constants";
+
 export default function Home({ setView, view, data }: any) {
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");
@@ -80,7 +82,7 @@ export default function Home({ setView, view, data }: any) {
             <ScrollView>
                 {
                     search.length == 0 && lists.map((list: any) => {
-                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color="rgba(0,0,0,0.8)" />
+                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color={COLOR.BLACK} />
                         } />)
                     })}
                 {
