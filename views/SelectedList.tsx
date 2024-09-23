@@ -3,6 +3,7 @@ import { List, NavigationBar,Input } from "@/components";
 import { useState, useEffect } from "react";
 import { ScrollView, Text,TouchableOpacity } from "react-native";
 import * as Haptics from 'expo-haptics';
+import {t} from "locale";
 
 export default function SelectedList({ setView, data }: any) {
   const [list, setList] = useState<any>([]);
@@ -63,7 +64,7 @@ export default function SelectedList({ setView, data }: any) {
   }
   return (
     <ScrollView style={{ width: "100%" }}>
-      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: "Back", icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: showEdit ? "Cancel" : "Edit", onPress: () => setShowEdit(!showEdit) }}>
+      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: showEdit ? t("views.selectedLists.cancel") : t("views.selectedLists.edit"), onPress: () => setShowEdit(!showEdit) }}>
         <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
       </NavigationBar>
       <List data={data} setList={setList} list={list} />

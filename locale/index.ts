@@ -35,4 +35,16 @@ function t(key:string) {
     return locale[locale.lang][key] || locale[locale.fallbackLang][key] || ""
 }
 
-export default t;
+function setLocale(lang:string) {
+    if(locale[lang]){
+        locale.lang = lang;
+    } else {
+        return false;
+    }
+}
+
+function getLocale(){
+    return locale.lang || locale.fallbackLang;
+}
+
+export {t,getLocale, setLocale};

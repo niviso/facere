@@ -3,9 +3,13 @@ import {useState} from "react";
 import {View} from "react-native";
 import Router from "./views";
 import { StatusBar } from 'expo-status-bar';
+import 'moment/locale/sv'  // without this line it didn't work
+import moment from "moment";
+import {getLocale} from "locale";
+moment.locale(getLocale());
 
 export default function App() {
-  const [view,setView] = useState<any>({route: "Start",data:{}});
+  const [view,setView] = useState<any>({route: "Home",data:{}});
   /*
   add to info.plist
   <key>NSFaceIDUsageDescription</key>

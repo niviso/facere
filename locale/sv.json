@@ -3,6 +3,14 @@
         "start": {
             "title": "FACERE",
             "subtitle": "Tryck var som helst för att låsa upp",
+        },
+        "home": {
+            "create": "Skapa lista"
+        },
+        "selectedList": {
+            "back": "Tillbaka",
+            "edit": "Redigera",
+            "cancel": "Avbryt"
         }
     }
 }

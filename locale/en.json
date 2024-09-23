@@ -3,6 +3,14 @@
         "start": {
             "title": "FACERE",
             "subtitle": "Press anywhere to unlock"
+        },
+        "home": {
+            "create": "Create list"
+        },
+        "selectedList": {
+            "back": "Back",
+            "edit": "Edit",
+            "cancel": "Cancel"
         }
     }
 }

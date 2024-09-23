@@ -7,6 +7,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {Size} from "@/constants";
 import {COLOR} from "@/constants";
+import {t} from "locale";
 
 export default function Home({ setView, view, data }: any) {
     const [lists, setLists] = useState<any>([]);
@@ -76,7 +77,7 @@ export default function Home({ setView, view, data }: any) {
 
     return (
         <View style={styles.wrapper}>
-            <NavigationBar headlineText={view.route} leftBtn={{ text: "Create list", onPress: createList }}>
+            <NavigationBar headlineText={view.route} leftBtn={{ text: t("views.home.create"), onPress: createList }}>
                 <Input placeholder="Search" onChangeText={setSearch} />
             </NavigationBar>
             <ScrollView>

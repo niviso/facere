@@ -1,8 +1,8 @@
-import { TouchableOpacity, Text,StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication';
 import Fontisto from '@expo/vector-icons/Fontisto';
-import {COLOR,Size} from "@/constants";
-import t from "locale";
+import { COLOR, Size } from "@/constants";
+import {t} from "locale";
 export default function Start({ setView }) {
     async function unlock() {
 
@@ -23,13 +23,13 @@ export default function Start({ setView }) {
     const styles = StyleSheet.create({
         wrapper: { width: "100%", height: "100%", backgroundColor: COLOR.WHITE, display: "flex", alignItems: "center", justifyContent: "center" },
         title: { fontSize: 100, fontWeight: "bold", color: COLOR.BLACK },
-        subtitle: { fontSize: Size.FONT.LG, fontWeight: "light", color: COLOR.BLACK }
+        subtitle: { fontSize: Size.FONT.MD, fontWeight: "light", color: COLOR.BLACK, textAlign: "center" }
     });
     return (
         <TouchableOpacity onPress={unlock} style={styles.wrapper}>
             <Fontisto name="locked" size={90} color={COLOR.BLACK} />
             <Text style={styles.title}>{t("views.start.title")}</Text>
-            <Text style={styles.subtitle}>Press anywhere to unlock</Text>
+            <Text style={styles.subtitle}>{t("views.start.subtitle")}</Text>
         </TouchableOpacity>
     )
 }
