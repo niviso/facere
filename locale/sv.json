@@ -1,3 +1,8 @@
 {
-    "title": "FACERE"
+    "views": {
+        "start": {
+            "title": "FACERE",
+            "subtitle": "Tryck var som helst för att låsa upp",
+        }
+    }
 }

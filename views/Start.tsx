@@ -28,7 +28,7 @@ export default function Start({ setView }) {
     return (
         <TouchableOpacity onPress={unlock} style={styles.wrapper}>
             <Fontisto name="locked" size={90} color={COLOR.BLACK} />
-            <Text style={styles.title}>{t("title")}</Text>
+            <Text style={styles.title}>{t("views.start.title")}</Text>
             <Text style={styles.subtitle}>Press anywhere to unlock</Text>
         </TouchableOpacity>
     )

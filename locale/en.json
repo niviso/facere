@@ -1,3 +1,8 @@
 {
-    "title": "FACERE",
+    "views": {
+        "start": {
+            "title": "FACERE",
+            "subtitle": "Press anywhere to unlock"
+        }
+    }
 }
