@@ -1,19 +1,30 @@
 import CryptoES from 'crypto-es';
+import * as SecureStore from 'expo-secure-store';
+import * as Crypto from 'expo-crypto';
 
 const Encryption = {
-    key: "tasse",
-    encrypt: (value:string) => {
-        const result = CryptoES.AES.encrypt(value, Encryption.key);
+    encrypt: async (value:string) => {
+        const encryptionKey = await getEncryptionKey();
+        const result = CryptoES.AES.encrypt(value, encryptionKey);
         return result;
     },
-    decrypt: (encrypted:any) => {
-        const decrypted =  CryptoES.AES.decrypt(encrypted, Encryption.key);
+    decrypt: async (encrypted:any) => {
+        const encryptionKey = await getEncryptionKey();
+        const decrypted =  CryptoES.AES.decrypt(encrypted, encryptionKey);
         return decrypted.toString(CryptoES.enc.Utf8);
     }
-}
+};
 
-function setKey(key:CryptoKey){
+async function getEncryptionKey():string {
+    const key = await SecureStore.getItemAsync("facere-encryption-key");
 
+    if(key) {
+        return key;
+    } else {
+        const newKey = Crypto.randomUUID();
+        await SecureStore.setItemAsync("facere-encryption-key", newKey);
+        return newKey;
+    }
 }
 
 

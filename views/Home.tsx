@@ -1,6 +1,6 @@
 import { View, ScrollView, StyleSheet } from 'react-native';
 import moment from 'moment';
-import { Store, Encryption } from "@/utilities";
+import { Store,Encryption } from "@/utilities";
 import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -9,10 +9,11 @@ import {Size} from "@/constants";
 import {COLOR} from "@/constants";
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
-export default function Home({ setView, view, data }: any) {
 
+export default function Home({ setView, view, data }: any) {
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");
+
     async function save(obj: any) {
         await Store.set("lists", obj);
     }
@@ -32,9 +33,16 @@ export default function Home({ setView, view, data }: any) {
         setView("SelectedList", obj);
     }
 
+    const fetchData = async () => {
+        const encrypt = await Encryption.encrypt("test");
+        const decrypt = await Encryption.decrypt(encrypt);
+      }
     useEffect(() => {
         fetchList();
+        fetchData();
+
     }, []);
+    
     const styles = StyleSheet.create({
         container: {
             width: "100%",
