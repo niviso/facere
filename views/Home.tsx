@@ -1,6 +1,6 @@
 import { View, ScrollView, StyleSheet } from 'react-native';
 import moment from 'moment';
-import Store from "../store";
+import { Store, Encryption } from "@/utilities";
 import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -8,8 +8,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {Size} from "@/constants";
 import {COLOR} from "@/constants";
 import {t} from "locale";
-
 export default function Home({ setView, view, data }: any) {
+
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");
     async function save(obj: any) {
@@ -24,6 +24,7 @@ export default function Home({ setView, view, data }: any) {
     }
 
     function createList() {
+        //Use crypto here
         const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
         const obj = { id: newId, name: `New List ${lists.length + 1}`, timestamp: new Date() };
         const result = [...lists, obj];

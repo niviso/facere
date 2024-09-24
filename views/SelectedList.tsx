@@ -1,4 +1,4 @@
-import Store from "../store";
+import { Store } from "@/utilities";
 import { List, NavigationBar,Input } from "@/components";
 import { useState, useEffect } from "react";
 import { ScrollView, Text,TouchableOpacity } from "react-native";
@@ -22,6 +22,7 @@ export default function SelectedList({ setView, data }: any) {
   }, []);
 
   async function onSubmitNewItem(input: string) {
+    //Use crypto here
     const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
     const newListItem = [{ id: newId, text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
     setList(newListItem);

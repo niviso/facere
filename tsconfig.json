@@ -8,6 +8,7 @@
       "@/constants": ["./constants/"],
       "@/views": ["./views/"],
       "locale": ["./locale/"],
+      "@/utilities": ["./utilities/"],
     }
   },
 }

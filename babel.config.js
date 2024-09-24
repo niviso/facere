@@ -11,6 +11,7 @@ module.exports = function(api) {
           "@/components": "./components/",
           "@/constants": "./constants/",
           "@/views": "./views/",
+          "@/utilities": "./utilities/",
           "locale": "./locale/",
         }
       }
