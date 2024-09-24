@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {Size} from "@/constants";
 import {COLOR} from "@/constants";
 import {t} from "locale";
+import * as Crypto from 'expo-crypto';
 export default function Home({ setView, view, data }: any) {
 
     const [lists, setLists] = useState<any>([]);
@@ -24,9 +25,7 @@ export default function Home({ setView, view, data }: any) {
     }
 
     function createList() {
-        //Use crypto here
-        const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
-        const obj = { id: newId, name: `New List ${lists.length + 1}`, timestamp: new Date() };
+        const obj = { id: Crypto.randomUUID(), name: `New List ${lists.length + 1}`, timestamp: new Date() };
         const result = [...lists, obj];
         setLists(result);
         save(result);

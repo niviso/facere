@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { ScrollView, Text,TouchableOpacity } from "react-native";
 import * as Haptics from 'expo-haptics';
 import {t} from "locale";
+import * as Crypto from 'expo-crypto';
 
 export default function SelectedList({ setView, data }: any) {
   const [list, setList] = useState<any>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [name, setName] = useState<string>(data.name);
+  
   async function fetchList() {
     const result = await Store.get(data.id);
     if (result) {
@@ -22,9 +24,7 @@ export default function SelectedList({ setView, data }: any) {
   }, []);
 
   async function onSubmitNewItem(input: string) {
-    //Use crypto here
-    const newId = Date.now().toString(36) + Math.random().toString(36).substring(2);
-    const newListItem = [{ id: newId, text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
+    const newListItem = [{ id: Crypto.randomUUID(), text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
     setList(newListItem);
     await Store.set(data.id, newListItem);
   }

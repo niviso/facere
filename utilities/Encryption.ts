@@ -1,4 +1,3 @@
-import * as Crypto from 'expo-crypto';
 import CryptoES from 'crypto-es';
 
 const Encryption = {
