@@ -6,7 +6,7 @@ const Encryption = {
     encrypt: async (value:string) => {
         const encryptionKey = await getEncryptionKey();
         const result = CryptoES.AES.encrypt(value, encryptionKey);
-        return result;
+        return JSON.stringify(result);
     },
     decrypt: async (encrypted:any) => {
         const encryptionKey = await getEncryptionKey();
@@ -15,9 +15,8 @@ const Encryption = {
     }
 };
 
-async function getEncryptionKey():string {
+async function getEncryptionKey():Promise<string> {
     const key = await SecureStore.getItemAsync("facere-encryption-key");
-
     if(key) {
         return key;
     } else {

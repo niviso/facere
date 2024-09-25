@@ -1,6 +1,6 @@
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity,Text } from 'react-native';
 import moment from 'moment';
-import { Store,Encryption } from "@/utilities";
+import { Store } from "@/utilities";
 import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -20,6 +20,7 @@ export default function Home({ setView, view, data }: any) {
 
     async function fetchList() {
         const result = await Store.get("lists");
+        console.log(result);
         if (result) {
             setLists(result);
         }
@@ -27,20 +28,14 @@ export default function Home({ setView, view, data }: any) {
 
     function createList() {
         const obj = { id: Crypto.randomUUID(), name: `New List ${lists.length + 1}`, timestamp: new Date() };
-        const result = [...lists, obj];
+        let result = [...lists, obj];
         setLists(result);
         save(result);
         setView("SelectedList", obj);
     }
 
-    const fetchData = async () => {
-        const encrypt = await Encryption.encrypt("test");
-        const decrypt = await Encryption.decrypt(encrypt);
-      }
     useEffect(() => {
         fetchList();
-        fetchData();
-
     }, []);
     
     const styles = StyleSheet.create({
@@ -90,15 +85,16 @@ export default function Home({ setView, view, data }: any) {
             </NavigationBar>
             <ScrollView>
                 {
-                    search.length == 0 && lists.map((list: any) => {
+                    search.length == 0 && lists.length > 0 && lists.map((list: any) => {
                         return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color={COLOR.BLACK} />
                         } />)
                     })}
                 {
-                    search.length !== 0 && lists.map((list: any) => {
+                    search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
                         return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
                     })}
             </ScrollView>
+            <TouchableOpacity onPress={Store.wipe} style={{position: "absolute",bottom: 20,left:20}}><Text>WIPE</Text></TouchableOpacity>
         </View>
     )
 }
