@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { Store } from"@/utilities";
 import {Item} from "./Item";
 import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {Size} from "@/constants";
+import {t} from "locale";
 export default function List({data,list,setList}:any){
     async function save(obj: any) {
         await Store.set(data.id, obj);
@@ -46,11 +47,16 @@ export default function List({data,list,setList}:any){
         setList(tmpList);
         save(tmpList);
       }
-    
+      
+      const styles = StyleSheet.create({
+        noItemsWrapper: { width: "100%", height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 },
+        noItemsText: { marginTop:20,fontSize: 24,fontWeight:"bold" }
+      });
+
       return (
         <View>
-            {list.map((item: any, index: number) => <Item key={`list-${index}`} {...item} toggleImportant={toggleImportant} onDelete={deleteItem} toggleItemComplete={toggleItemComplete} />)}
-            {!list.length && <View style={{ width: "100%", height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 }}><FontAwesome5 name="star" size={Size.Icon.lg} color="black" /><Text style={{ marginTop:20,fontSize: 24,fontWeight:"bold" }}>Empty list</Text></View>}
+            {list.map((item: any, index: number) => <Item key={`list-${item.id}`} {...item} toggleImportant={toggleImportant} onDelete={deleteItem} toggleItemComplete={toggleItemComplete} />)}
+            {!list.length && <View style={styles.noItemsWrapper}><FontAwesome5 name="star" size={Size.Icon.lg} color="black" /><Text style={styles.noItemsText}>{t("views.list.empty")}</Text></View>}
         </View>
       );
 }

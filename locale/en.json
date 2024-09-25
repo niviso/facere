@@ -11,6 +11,9 @@
             "back": "Back",
             "edit": "Edit",
             "cancel": "Cancel"
+        },
+        "list": {
+            "empty": "Empty list"
         }
     }
 }

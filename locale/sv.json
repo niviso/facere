@@ -11,6 +11,9 @@
             "back": "Tillbaka",
             "edit": "Redigera",
             "cancel": "Avbryt"
+        },
+        "list": {
+            "empty": "Tom lista"
         }
     }
 }

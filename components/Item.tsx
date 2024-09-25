@@ -18,9 +18,6 @@ interface ItemProps {
 
 function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated, isImportant, onDelete, toggleImportant }: ItemProps) {
 
-    const styles = StyleSheet.create({
-
-    });
     function toggle(value: boolean) {
         if (value) {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
@@ -30,7 +27,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
         toggleItemComplete(value, id);
     }
     return (
-            <Card id={id} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.INFO : "white"} onLongPress={() => toggleImportant(id)} cta={
+            <Card id={id} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.INFO : COLOR.WHITE} onLongPress={() => toggleImportant(id)} cta={
                 <BouncyCheckbox
                 fillColor={COLOR.SUCCESS}
                 isChecked={complete}
