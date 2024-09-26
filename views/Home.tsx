@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet, TouchableOpacity,Text } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import moment from 'moment';
 import { Store, Interaction } from "@/utilities";
 import { Card, NavigationBar, Input } from "@/components";
@@ -101,7 +101,6 @@ export default function Home({ setView, view, data }: any) {
                         return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
                     })}
             </ScrollView>
-            <TouchableOpacity onPress={Store.wipe} style={{position: "absolute",bottom: 20,left:20}}><Text>WIPE</Text></TouchableOpacity>
         </View>
     )
 }

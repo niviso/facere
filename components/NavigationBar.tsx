@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
-import {Size, COLOR} from "@/constants";
+import { Size, COLOR } from "@/constants";
 interface ActionButton {
     onPress: Function;
     text: string;
@@ -15,7 +15,7 @@ interface NavBarProps {
     headlineText?: string;
     children?: ReactElement;
 }
-export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headlineText,children }: NavBarProps) {
+export default function NavigationBar({ leftBtn, rightBtn, headlineElement, headlineText, children }: NavBarProps) {
     const windowWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         wrapper: {
@@ -28,7 +28,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
             height: 120,
             paddingTop: 70
         },
-        topWrapper:{
+        topWrapper: {
             paddingLeft: 15,
             paddingRight: 15,
             paddingBottom: 15,
@@ -58,25 +58,25 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
             fontSize: Size.FONT.MD,
             color: COLOR.INFO
         },
-        rightIconPadding: {paddingRight: 5},
-        leftIconPadding: {paddingRight: 5},
+        rightIconPadding: { paddingRight: 5 },
+        leftIconPadding: { paddingRight: 5 },
     });
     return (
         <View style={styles.topWrapper}>
             <View style={styles.wrapper}>
                 {rightBtn &&
                     <TouchableOpacity role="button" onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color={COLOR.INFO} style={styles.rightIconPadding} />}
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={rightBtn.text ? Size.Icon.md : Size.Icon.lg} color={COLOR.INFO} style={styles.rightIconPadding} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
-                {headlineText && !headlineElement &&  <Text numberOfLines={1} style={styles.headlineText}>{headlineText}</Text>}
+                {headlineText && !headlineElement && <Text numberOfLines={1} style={styles.headlineText}>{headlineText}</Text>}
                 {headlineElement && <View style={styles.headlineText}>{headlineElement}</View>}
 
                 {leftBtn &&
                     <TouchableOpacity role="button" onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={leftBtn.text ? Size.Icon.md : Size.Icon.lg} color={COLOR.INFO} style={styles.leftIconPadding} />}
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color={COLOR.INFO} style={styles.leftIconPadding} />}
                     </TouchableOpacity>
                 }
             </View>
