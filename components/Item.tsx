@@ -1,8 +1,8 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import * as Haptics from 'expo-haptics';
 import moment from 'moment';
 import Card from "./Card";
 import { Size, COLOR } from "@/constants";
+import { Interaction } from "@/utilities";
 interface ItemProps {
     id: string;
     text: string;
@@ -19,9 +19,10 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
 
     function toggle(value: boolean) {
         if (value) {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
+            Interaction.on();
         } else {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
+            Interaction.off();
+            
         }
         toggleItemComplete(value, id);
     }

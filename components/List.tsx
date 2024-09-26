@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { Store } from"@/utilities";
+import { Store,Interaction } from"@/utilities";
 import {Item} from "./Item";
-import * as Haptics from 'expo-haptics';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {Size} from "@/constants";
 import {t} from "locale";
@@ -38,9 +37,9 @@ export default function List({data,list,setList}:any){
             item.hasBeenUpdated = true;
             item.timestamp = new Date();
             if (item.isImportant) {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
+              Interaction.on();
             } else {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
+              Interaction.off();
             }
           }
         }

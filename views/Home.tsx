@@ -1,6 +1,6 @@
 import { View, ScrollView, StyleSheet, TouchableOpacity,Text } from 'react-native';
 import moment from 'moment';
-import { Store } from "@/utilities";
+import { Store, Interaction } from "@/utilities";
 import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -30,7 +30,9 @@ export default function Home({ setView, view, data }: any) {
         let result = [...lists, obj];
         setLists(result);
         save(result);
+        Interaction.success();
         setView("SelectedList", obj);
+        
     }
 
     useEffect(() => {
@@ -63,7 +65,7 @@ export default function Home({ setView, view, data }: any) {
             textDecorationLine: "line-through",
         },
         topText: {
-            fontSize: Size.FONT.SM,
+            fontSize: Size.FONT.MD,
             opacity: 0.5
         },
         wrapper: {

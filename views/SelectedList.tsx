@@ -1,8 +1,7 @@
-import { Store } from "@/utilities";
+import { Store, Interaction } from "@/utilities";
 import { List, NavigationBar,Input } from "@/components";
 import { useState, useEffect } from "react";
 import { ScrollView, Text,TouchableOpacity } from "react-native";
-import * as Haptics from 'expo-haptics';
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
 
@@ -45,14 +44,10 @@ export default function SelectedList({ setView, data }: any) {
 
   function toggleEdit() {
     if (showEdit) {
-      Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Success
-      )
+      Interaction.on();
       setShowEdit(false);
     } else {
-      Haptics.notificationAsync(
-        Haptics.NotificationFeedbackType.Warning
-      )
+      Interaction.off();
       setShowEdit(true);
     }
   }
@@ -63,9 +58,14 @@ export default function SelectedList({ setView, data }: any) {
         <Input style={{ fontSize: 22,fontWeight:"bold" }} value={name} onSubmitEditing={updateList} autoFocus />
     )
   }
+
+  function goBack() {
+    Interaction.success();
+    setView("Home");
+  }
   return (
     <ScrollView style={{ width: "100%" }}>
-      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} leftBtn={{ text: showEdit ? t("views.selectedLists.cancel") : t("views.selectedLists.edit"), onPress: () => setShowEdit(!showEdit) }}>
+      <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: goBack }} leftBtn={{ text: showEdit ? t("views.selectedLists.cancel") : t("views.selectedLists.edit"), onPress: toggleEdit }}>
         <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
       </NavigationBar>
       <List data={data} setList={setList} list={list} />

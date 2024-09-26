@@ -55,7 +55,8 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
             maxWidth: windowWidth - 230 // 200 + 30 padding
         },
         actionBtnText: {
-            fontSize: Size.FONT.MD
+            fontSize: Size.FONT.MD,
+            color: COLOR.INFO
         },
         rightIconPadding: {paddingRight: 5},
         leftIconPadding: {paddingRight: 5},
@@ -64,8 +65,8 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
         <View style={styles.topWrapper}>
             <View style={styles.wrapper}>
                 {rightBtn &&
-                    <TouchableOpacity onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color={COLOR.BLACK} style={styles.rightIconPadding} />}
+                    <TouchableOpacity role="button" onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color={COLOR.INFO} style={styles.rightIconPadding} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
@@ -73,9 +74,9 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
                 {headlineElement && <View style={styles.headlineText}>{headlineElement}</View>}
 
                 {leftBtn &&
-                    <TouchableOpacity onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
+                    <TouchableOpacity role="button" onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color={COLOR.BLACK} style={styles.leftIconPadding} />}
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color={COLOR.INFO} style={styles.leftIconPadding} />}
                     </TouchableOpacity>
                 }
             </View>
