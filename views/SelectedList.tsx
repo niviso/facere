@@ -25,6 +25,7 @@ export default function SelectedList({ setView, data }: any) {
   async function onSubmitNewItem(input: string) {
     const newListItem = [{ id: Crypto.randomUUID(), text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
     setList(newListItem);
+    Interaction.on();
     await Store.set(data.id, newListItem);
   }
   async function updateList(name: string) {

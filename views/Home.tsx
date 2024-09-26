@@ -77,7 +77,13 @@ export default function Home({ setView, view, data }: any) {
         setLists(result);
         save(result);
         Store.delete(id);
-      }
+    }
+
+    function goToList(list) {
+        Interaction.on();
+        setView('SelectedList', list)
+
+    }
 
     return (
         <View style={styles.wrapper}>
@@ -87,12 +93,12 @@ export default function Home({ setView, view, data }: any) {
             <ScrollView>
                 {
                     search.length == 0 && lists.length > 0 && lists.map((list: any) => {
-                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color={COLOR.BLACK} />
+                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color={COLOR.BLACK} />
                         } />)
                     })}
                 {
                     search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => setView('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
                     })}
             </ScrollView>
             <TouchableOpacity onPress={Store.wipe} style={{position: "absolute",bottom: 20,left:20}}><Text>WIPE</Text></TouchableOpacity>
