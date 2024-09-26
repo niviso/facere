@@ -5,8 +5,7 @@ import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {Size} from "@/constants";
-import {COLOR} from "@/constants";
+import {Size, COLOR} from "@/constants";
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
 
@@ -43,12 +42,12 @@ export default function Home({ setView, view, data }: any) {
             width: "100%",
             padding: 10,
             borderBottomWidth: 1,
-            borderColor: "rgba(0,0,0,0.1)",
+            borderColor: COLOR.BORDER_COLOR,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            backgroundColor: "white"
+            backgroundColor: COLOR.WHITE
         },
         innerContainer: {
             display: "flex",
@@ -57,14 +56,14 @@ export default function Home({ setView, view, data }: any) {
             gap: 5
         },
         baseText: {
-            fontSize: 18,
+            fontSize: Size.FONT.MD,
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
             textDecorationLine: "line-through",
         },
         topText: {
-            fontSize: 12,
+            fontSize: Size.FONT.SM,
             opacity: 0.5
         },
         wrapper: {

@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
-import {Size} from "@/constants";
+import {Size, COLOR} from "@/constants";
 interface ActionButton {
     onPress: Function;
     text: string;
@@ -13,7 +13,7 @@ interface NavBarProps {
     rightBtn?: ActionButton | any;
     headlineElement?: any;
     headlineText?: string;
-    children: ReactElement;
+    children?: ReactElement;
 }
 export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headlineText,children }: NavBarProps) {
     const windowWidth = Dimensions.get('window').width;
@@ -50,20 +50,22 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
         headlineText: {
             textAlign: "center",
             fontSize: leftBtn && rightBtn ? 22 : 32,
-            color: "black",
+            color: COLOR.BLACK,
             fontWeight: "bold",
             maxWidth: windowWidth - 230 // 200 + 30 padding
         },
         actionBtnText: {
-            fontSize: 16
-        }
+            fontSize: Size.FONT.MD
+        },
+        rightIconPadding: {paddingRight: 5},
+        leftIconPadding: {paddingRight: 5},
     });
     return (
         <View style={styles.topWrapper}>
             <View style={styles.wrapper}>
                 {rightBtn &&
                     <TouchableOpacity onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color="rgba(0,0,0,0.8)" style={{paddingRight: 5}} />}
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={Size.Icon.md} color={COLOR.BLACK} style={styles.rightIconPadding} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
@@ -73,7 +75,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement,headl
                 {leftBtn &&
                     <TouchableOpacity onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color="rgba(0,0,0,0.8)" style={{paddingLeft: 5}} />}
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={Size.Icon.md} color={COLOR.BLACK} style={styles.leftIconPadding} />}
                     </TouchableOpacity>
                 }
             </View>

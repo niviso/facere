@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
+import { COLOR } from "@/constants";
 export default function Input({ value, placeholder, onSubmitEditing, onChangeText, style, autoFocus, refocus }: any) {
     const [input, setInput] = useState<string>(value);
     const inputRef = useRef(null);
@@ -11,9 +12,6 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
     function submit(e) {
         onSubmitEditing(input);
         setInput("");
-        setTimeout(() => {
-            inputRef.current.focus();   
-        },1);
     }
 
     const styles = StyleSheet.create({
@@ -21,11 +19,11 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
             height: 44,
             paddingLeft: 15,
             borderRadius: 15,
-            backgroundColor: "rgba(0,0,0,0.1)",
+            backgroundColor: COLOR.BORDER_COLOR,
         }
     });
     return (
-        <View style={{position: "relative"}}>
+        <View style={{ position: "relative" }}>
             <TextInput
                 style={style ? style : styles.input}
                 ref={inputRef}
@@ -34,7 +32,7 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
                 value={input}
                 onChangeText={(e) => update(e)}
                 onSubmitEditing={(e) => submit(e)}
-                placeholderTextColor="rgba(0,0,0,0.7)"
+                placeholderTextColor={COLOR.BLACK}
             />
         </View>
     )

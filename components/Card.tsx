@@ -12,9 +12,10 @@ interface CardProps {
     onLongPress?: Function | any;
     inactive?: boolean;
     onDelete: Function;
+    textColor?: string;
 }
 
-export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, onLongPress, inactive,onDelete }: CardProps) {
+export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, textColor=COLOR.BLACK, onLongPress, inactive,onDelete }: CardProps) {
     const styles = StyleSheet.create({
         container: {
             width: "100%",
@@ -22,12 +23,12 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             paddingLeft: 15,
             paddingRight: 15,
             borderBottomWidth: 1,
-            borderColor: "rgba(0,0,0,0.1)",
+            borderColor: COLOR.BORDER_COLOR,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            backgroundColor: backgroundColor ? backgroundColor : "white",
+            backgroundColor: backgroundColor ? backgroundColor : COLOR.WHITE,
         },
         innerContainer: {
             display: "flex",
@@ -44,13 +45,13 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
         },
         eyebrowText: {
             fontSize: Size.FONT.SM,
-            color: COLOR.BLACK
+            color: textColor
         },
         mainText: {
             width: "80%",
-            color: "black",
+            color: textColor,
             textDecorationLine: inactive ? 'line-through' : undefined,
-            fontSize: 18
+            fontSize: Size.FONT.MD
         }
     });
     const renderLeftActions = (progress: any, dragX: any) => {
@@ -62,11 +63,11 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             padding: 10,
             width: 100,
             height: "100%",
-            backgroundColor: "#ff0f0f",
+            backgroundColor: COLOR.ERROR,
         },
         swipableLeftButtonText: {
             fontSize: Size.FONT.MD,
-            color: "white"
+            color: COLOR.WHITE
         },
         swipableLeftWrapper: {
             height: "100%"

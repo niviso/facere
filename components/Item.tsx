@@ -1,9 +1,8 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import moment from 'moment';
 import Card from "./Card";
-import {Size, COLOR} from "@/constants";
+import { Size, COLOR } from "@/constants";
 interface ItemProps {
     id: string;
     text: string;
@@ -27,17 +26,18 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
         toggleItemComplete(value, id);
     }
     return (
-            <Card id={id} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.INFO : COLOR.WHITE} onLongPress={() => toggleImportant(id)} cta={
+        <Card id={id} textColor={isImportant ? COLOR.WHITE : COLOR.BLACK}
+            onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.BLACK : COLOR.WHITE} onLongPress={() => toggleImportant(id)} cta={
                 <BouncyCheckbox
-                fillColor={COLOR.SUCCESS}
-                isChecked={complete}
-                onPress={toggle}
-                size={Size.Icon.lg}
-                textContainerStyle={{
-                    marginLeft: 0
-                }}
-                style={{marginLeft:0,marginRight:0}}
-            />} />
+                    fillColor={COLOR.SUCCESS}
+                    isChecked={complete}
+                    onPress={toggle}
+                    size={Size.Icon.lg}
+                    textContainerStyle={{
+                        marginLeft: 0
+                    }}
+                    style={{ marginLeft: 0, marginRight: 0 }}
+                />} />
     )
 }
 
