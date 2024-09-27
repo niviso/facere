@@ -9,6 +9,7 @@
       "@/views": ["./views/"],
       "locale": ["./locale/"],
       "@/utilities": ["./utilities/"],
+      "@/types": ["./types/"],
     }
   },
 }

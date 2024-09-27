@@ -6,8 +6,8 @@ import { COLOR, Size } from "@/constants";
 import { setLocale, getLocale } from "locale";
 import appData from "../app.json";
 import { Store } from "@/utilities";
-
-export default function Settings({ setView }) {
+import type { RouteProps } from "@/types";
+export default function Settings({ setView }:RouteProps) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     const styles = StyleSheet.create({
@@ -29,10 +29,11 @@ export default function Settings({ setView }) {
         ]);
 
     }
+    const pickerData = [{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]
     return (
         <View>
             <NavigationBar headlineText="Settings" leftBtn={{ icon: "information-circle", onPress: () => setView("Home") }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
-            <Picker options={[{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]} value={getLocale()} onUpdate={(option) => { setLocale(option); forceUpdate() }} />
+            <Picker options={pickerData} value={getLocale()} onUpdate={(option:string) => { setLocale(option); forceUpdate() }} />
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
