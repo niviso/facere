@@ -4,6 +4,7 @@
     "slug": "facere",
     "version": "1.0.0",
     "orientation": "portrait",
+    "author": "Nikki Sollid",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

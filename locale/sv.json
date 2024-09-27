@@ -18,7 +18,16 @@
         "settings": {
             "intro": "Alla dina uppgifter, anteckningar och personliga data är helt krypterade med hjälp av avancerade säkerhetsprotokoll, vilket säkerställer att bara du kan komma åt dem. Data lagras säkert på din enhet, delas aldrig eller synkroniseras till externa servrar, vilket skyddar din information från obehörig åtkomst. Oavsett om det är arbetsuppgifter eller personliga påminnelser erbjuder SecureTasks en sömlös och säker miljö som håller din information säker och privat hela tiden.",
             "delete_data": "Radera all data",
-            "created_by": "Skapare @creator"
+            "created_by": "Skapad av @creator",
+            "language": "Språk"
+        }
+    },
+    "prompt": {
+        "wipe_data": {
+            "erase": "Radera",
+            "cancel": "Avbryt",
+            "prompt_title": "Ta bort all app data",
+            "prompt_subtitle": "Är du säker?"
         }
     }
 }

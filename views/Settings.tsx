@@ -7,6 +7,7 @@ import { COLOR, Size } from "@/constants";
 import { setLocale, getLocale } from "locale";
 import appData from "../app.json";
 import { Store } from "@/utilities";
+
 function Picker({ options, value, onUpdate }: any) {
     const [selected, setSelected] = useState(value);
 
@@ -16,19 +17,18 @@ function Picker({ options, value, onUpdate }: any) {
     }
 
     const styles = StyleSheet.create({
-        wrapper: {
-
-        }
+        wrapper: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: 15, borderBottomWidth: 1, borderColor: COLOR.BORDER_COLOR },
     });
     return (
         <View style={{ padding: 0 }}>
             <View style={{ paddingLeft: 15, paddingBottom: 15 }}>
-                <Text style={{ fontSize: 22, fontWeight: "bold" }}>Language</Text>
+                <Text style={{ fontSize: 22, fontWeight: "bold" }}>{t("view.settings.language")}</Text>
             </View>
             {options.map((option: any, index: number) => {
-                return (<TouchableOpacity key={`picker-${index}`} onPress={() => select(option.value)} style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", backgroundColor: option.value === selected ? "rgba(0,0,0,0.1)" : "white", padding: 15, borderBottomWidth: 1, borderColor: "rgba(0,0,0,0.1)" }}>
+                return (
+                <TouchableOpacity key={`picker-${index}`} onPress={() => select(option.value)} style={{...styles.wrapper,backgroundColor: option.value === selected ? COLOR.BORDER_COLOR : COLOR.WHITE}}>
                     <Text style={{ fontWeight: option.value === selected ? "bold" : "normal" }}>{option.name}</Text>
-                    {option.value === selected && <Ionicons name="checkmark" size={16} color="black" />}
+                    {option.value === selected && <Ionicons name="checkmark" size={Size.Icon.md} color={COLOR.BLACK}/>}
                 </TouchableOpacity>)
             })}
 
@@ -42,18 +42,20 @@ export default function Settings({ setView }) {
     const styles = StyleSheet.create({
         appDetailText: { fontSize: Size.FONT.SM, fontWeight: "bold", color: COLOR.BLACK },
         appDescriptionWrapper: { padding: 15, opacity: 0.9, marginBottom: 15, gap: 10 },
-        appDescriptionText: { fontSize: Size.FONT.MD, color: COLOR.BLACK },
+        appDescriptionText: { fontSize: Size.FONT.MD, color: COLOR.BLACK, height: "50%" },
         deleteBtnWrapper: { marginTop: 15 }
     });
 
     function deleteAllData() {
-        Alert.alert('Delete all data for this app on this device', 'Are you sure?', [
+        const title = t("prompt.wipe_data.prompt_title");
+        const subtitle = t("prompt.wipe_data.prompt_subtitle");
+        Alert.alert(title, subtitle, [
             {
-              text: 'Cancel',
-              style: 'cancel',
+                text: t("prompt.wipe_data.cancel"),
+                style: "cancel",
             },
-            {text: 'Erase', onPress: () => Store.wipe()},
-          ]);
+            { text: t("prompt.wipe_data.erase"), onPress: () => Store.wipe() },
+        ]);
 
     }
     return (
@@ -63,7 +65,7 @@ export default function Settings({ setView }) {
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
-                <Text style={styles.appDetailText}>{t("view.settings.created_by",[{name: "creator", value: "Nikki sollid"}])}</Text>
+                <Text style={styles.appDetailText}>{t("view.settings.created_by", [{ name: "creator", value: appData.expo.author }])}</Text>
                 <Text style={styles.appDescriptionText}>
                     {t("view.settings.intro")}
                 </Text>

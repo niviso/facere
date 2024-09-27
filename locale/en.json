@@ -17,7 +17,17 @@
         },
         "settings": {
             "intro": "All your tasks, notes, and personal data are fully encrypted using advanced security protocols, ensuring that only you can access them. Data is securely stored on your device, never shared or synced to external servers, protecting your information from unauthorized access. Whether it's work tasks or personal reminders, SecureTasks offers a seamless and secure environment, keeping your information safe and private at all times.",
-            "delete_data": "Delete all data"
+            "delete_data": "Delete all data",
+            "created_by": "Created by @creator",
+            "language": "Language"
+        }
+    },
+    "prompt": {
+        "wipe_data": {
+            "erase": "Erase",
+            "cancel": "Cancel",
+            "title": "Delete all data for this app on this device",
+            "subtitle": "Are you sure?"
         }
     }
 }

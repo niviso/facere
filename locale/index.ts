@@ -31,7 +31,7 @@ interface LocaleVariable {
   value: string;
 }
 
-function t(key:string,variables:any) {
+function t(key:string,variables?:any) {
     const slicedKey = key.split(".");
     let localeStr = "";
     if(slicedKey.length !== 0) {
