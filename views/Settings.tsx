@@ -63,7 +63,7 @@ export default function Settings({ setView }) {
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
-                <Text style={styles.appDetailText}>App created by Nikki Sollid</Text>
+                <Text style={styles.appDetailText}>{t("view.settings.created_by",[{name: "creator", value: "Nikki sollid"}])}</Text>
                 <Text style={styles.appDescriptionText}>
                     {t("view.settings.intro")}
                 </Text>

@@ -26,13 +26,27 @@ function findDeepKey(obj:any, keyToFind:string):string | undefined {
       }
     }
 }
+interface LocaleVariable {
+  name: string;
+  value: string;
+}
 
-function t(key:string) {
+function t(key:string,variables:any) {
     const slicedKey = key.split(".");
+    let localeStr = "";
     if(slicedKey.length !== 0) {
-        return findDeepKey(locale[locale.lang],slicedKey[slicedKey.length - 1]) || findDeepKey(locale[locale.fallbackLang],slicedKey[slicedKey.length - 1]) || ""
+      localeStr = findDeepKey(locale[locale.lang],slicedKey[slicedKey.length - 1]) || findDeepKey(locale[locale.fallbackLang],slicedKey[slicedKey.length - 1]) || key
+    } else {
+      localeStr = locale[locale.lang][key] || locale[locale.fallbackLang][key] || key
     }
-    return locale[locale.lang][key] || locale[locale.fallbackLang][key] || ""
+    if(variables) {
+      variables.forEach((variable) => {
+        localeStr = localeStr.replace(`@${variable.name}`,variable.value);
+      });
+    }
+
+    return localeStr;
+
 }
 
 function setLocale(lang:string) {
