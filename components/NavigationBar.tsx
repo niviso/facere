@@ -19,7 +19,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
     const windowWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         wrapper: {
-            paddingBottom: 15,
+            paddingBottom: SIZE.SPACE.MD,
             width: "100%",
             display: "flex",
             flexDirection: "row",
@@ -29,9 +29,9 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
             paddingTop: 70
         },
         topWrapper: {
-            paddingLeft: 15,
-            paddingRight: 15,
-            paddingBottom: 15,
+            paddingLeft: SIZE.SPACE.MD,
+            paddingRight: SIZE.SPACE.MD,
+            paddingBottom: SIZE.SPACE.MD,
         },
         rightBtnWrapper: {
             display: "flex",

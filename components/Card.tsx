@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { View, Text, TouchableOpacity, StyleSheet,Animated } from "react-native";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import {COLOR, Size} from "@/constants";
+import {COLOR, SIZE} from "@/constants";
 interface CardProps {
     id: string;
     eyebrow?: string;
@@ -19,9 +19,9 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
     const styles = StyleSheet.create({
         container: {
             width: "100%",
-            padding: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
+            padding: SIZE.SPACE.SM,
+            paddingLeft: SIZE.SPACE.MD,
+            paddingRight: SIZE.SPACE.MD,
             borderBottomWidth: 1,
             borderColor: COLOR.BORDER_COLOR,
             display: "flex",
@@ -37,21 +37,21 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             gap: 5
         },
         baseText: {
-            fontSize: Size.FONT.MD,
+            fontSize: SIZE.FONT.MD,
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
             textDecorationLine: "line-through",
         },
         eyebrowText: {
-            fontSize: Size.FONT.SM,
+            fontSize: SIZE.FONT.SM,
             color: textColor
         },
         mainText: {
             width: "80%",
             color: textColor,
             textDecorationLine: inactive ? 'line-through' : undefined,
-            fontSize: Size.FONT.MD
+            fontSize: SIZE.FONT.MD
         }
     });
     const renderLeftActions = (progress: any, dragX: any) => {
@@ -66,7 +66,7 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             backgroundColor: COLOR.ERROR,
         },
         swipableLeftButtonText: {
-            fontSize: Size.FONT.MD,
+            fontSize: SIZE.FONT.MD,
             color: COLOR.WHITE
         },
         swipableLeftWrapper: {

@@ -13,9 +13,9 @@ export default function Settings({ setView }:RouteProps) {
 
     const styles = StyleSheet.create({
         appDetailText: { fontSize: SIZE.FONT.SM, fontWeight: "bold", color: COLOR.BLACK },
-        appDescriptionWrapper: { padding: 15, opacity: 0.9, marginBottom: 15, gap: 10 },
+        appDescriptionWrapper: { padding: SIZE.SPACE.MD, opacity: 0.9, marginBottom: SIZE.SPACE.MD, gap: 10 },
         appDescriptionText: { fontSize: SIZE.FONT.MD, color: COLOR.BLACK, height: "50%" },
-        deleteBtnWrapper: { marginTop: 15 }
+        deleteBtnWrapper: { marginTop: SIZE.SPACE.MD }
     });
 
     function deleteAllData() {

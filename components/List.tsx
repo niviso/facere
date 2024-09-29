@@ -2,7 +2,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Store,Interaction } from"@/utilities";
 import {Item} from "./Item";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import {Size} from "@/constants";
+import {SIZE} from "@/constants";
 import {t} from "locale";
 export default function List({data,list,setList}:any){
     async function save(obj: any) {
@@ -55,7 +55,7 @@ export default function List({data,list,setList}:any){
       return (
         <View>
             {list.map((item: any, index: number) => <Item key={`list-${item.id}`} {...item} toggleImportant={toggleImportant} onDelete={deleteItem} toggleItemComplete={toggleItemComplete} />)}
-            {!list.length && <View style={styles.noItemsWrapper}><FontAwesome5 name="star" size={Size.Icon.lg} color="black" /><Text style={styles.noItemsText}>{t("views.list.empty")}</Text></View>}
+            {!list.length && <View style={styles.noItemsWrapper}><FontAwesome5 name="star" size={SIZE.ICON.LG} color="black" /><Text style={styles.noItemsText}>{t("views.list.empty")}</Text></View>}
         </View>
       );
 }

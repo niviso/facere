@@ -4,10 +4,10 @@ const ICON = {
     LG: 32
 } as const;
 
-const PADDING = {
-    sm: 5,
-    md: 15,
-    lg: 30
+const SPACE = {
+    SM: 10,
+    MD: 15,
+    LG: 30
 } as const;
 
 const FONT = {
@@ -18,7 +18,7 @@ const FONT = {
 
 const SIZE = {
     ICON: ICON,
-    PADDING: PADDING,
+    SPACE: SPACE,
     FONT: FONT
 } as const;
 

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
-import { COLOR } from "@/constants";
+import { COLOR, SIZE } from "@/constants";
 export default function Input({ value, placeholder, onSubmitEditing, onChangeText, style, autoFocus, refocus }: any) {
     const [input, setInput] = useState<string>(value);
     const inputRef = useRef(null);
@@ -17,8 +17,8 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
     const styles = StyleSheet.create({
         input: {
             height: 44,
-            paddingLeft: 15,
-            borderRadius: 15,
+            paddingLeft: SIZE.SPACE.MD,
+            borderRadius: SIZE.SPACE.MD,
             backgroundColor: COLOR.BORDER_COLOR,
         }
     });

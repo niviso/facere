@@ -13,11 +13,11 @@ export default function Picker({ options, value, onUpdate }: any) {
     }
 
     const styles = StyleSheet.create({
-        wrapper: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: 15, borderBottomWidth: 1, borderColor: COLOR.BORDER_COLOR },
+        wrapper: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: SIZE.SPACE.MD, borderBottomWidth: 1, borderColor: COLOR.BORDER_COLOR },
     });
     return (
         <View style={{ padding: 0 }}>
-            <View style={{ paddingLeft: 15, paddingBottom: 15 }}>
+            <View style={{ paddingLeft: SIZE.SPACE.MD, paddingBottom: SIZE.SPACE.MD }}>
                 <Text style={{ fontSize: 22, fontWeight: "bold" }}>{t("view.settings.language")}</Text>
             </View>
             {options.map((option: any, index: number) => {
