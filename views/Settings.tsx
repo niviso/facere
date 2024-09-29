@@ -2,18 +2,19 @@ import { View, Text, Button, StyleSheet, Alert } from "react-native";
 import { t } from "locale";
 import { NavigationBar, Picker } from "@/components";
 import { useReducer } from "react";
-import { COLOR, Size } from "@/constants";
+import { COLOR, SIZE } from "@/constants";
 import { setLocale, getLocale } from "locale";
 import appData from "../app.json";
 import { Store } from "@/utilities";
 import type { RouteProps } from "@/types";
+
 export default function Settings({ setView }:RouteProps) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     const styles = StyleSheet.create({
-        appDetailText: { fontSize: Size.FONT.SM, fontWeight: "bold", color: COLOR.BLACK },
+        appDetailText: { fontSize: SIZE.FONT.SM, fontWeight: "bold", color: COLOR.BLACK },
         appDescriptionWrapper: { padding: 15, opacity: 0.9, marginBottom: 15, gap: 10 },
-        appDescriptionText: { fontSize: Size.FONT.MD, color: COLOR.BLACK, height: "50%" },
+        appDescriptionText: { fontSize: SIZE.FONT.MD, color: COLOR.BLACK, height: "50%" },
         deleteBtnWrapper: { marginTop: 15 }
     });
 
@@ -32,7 +33,7 @@ export default function Settings({ setView }:RouteProps) {
     const pickerData = [{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]
     return (
         <View>
-            <NavigationBar headlineText="Settings" leftBtn={{ icon: "information-circle", onPress: () => setView("Home") }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
+            <NavigationBar headlineText="Settings" leftBtn={{ icon: "accessibility-sharp", onPress: () => setView("Accessibility") }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
             <Picker options={pickerData} value={getLocale()} onUpdate={(option:string) => { setLocale(option); forceUpdate() }} />
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>

@@ -1,3 +1,3 @@
-import Size from "./Size";
+import SIZE from "./Size";
 import COLOR from "./Color";
-export {Size, COLOR}
+export {SIZE, COLOR}

@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
-import { Size, COLOR } from "@/constants";
+import { SIZE, COLOR } from "@/constants";
 interface ActionButton {
     onPress: Function;
     text: string;
@@ -55,7 +55,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
             maxWidth: windowWidth - 230 // 200 + 30 padding
         },
         actionBtnText: {
-            fontSize: Size.FONT.MD,
+            fontSize: SIZE.FONT.MD,
             color: COLOR.INFO
         },
         rightIconPadding: { paddingRight: 5 },
@@ -66,7 +66,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
             <View style={styles.wrapper}>
                 {rightBtn &&
                     <TouchableOpacity role="button" onPress={rightBtn.onPress} style={styles.rightBtnWrapper}>
-                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={rightBtn.text ? Size.Icon.md : Size.Icon.lg} color={COLOR.INFO} style={styles.rightIconPadding} />}
+                        {rightBtn.icon && <Ionicons name={rightBtn.icon} size={rightBtn.text ? SIZE.ICON.MD : SIZE.ICON.LG} color={COLOR.INFO} style={styles.rightIconPadding} />}
                         <Text style={styles.actionBtnText}>{rightBtn.text}</Text>
                     </TouchableOpacity>
                 }
@@ -75,7 +75,7 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
 
                 {leftBtn &&
                     <TouchableOpacity role="button" onPress={leftBtn.onPress} style={styles.leftBtnWrapper}>
-                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={leftBtn.text ? Size.Icon.md : Size.Icon.lg} color={COLOR.INFO} style={styles.leftIconPadding} />}
+                        {leftBtn.icon && <Ionicons name={leftBtn.icon} size={leftBtn.text ? SIZE.ICON.MD : SIZE.ICON.LG} color={COLOR.INFO} style={styles.leftIconPadding} />}
                         <Text style={styles.actionBtnText}>{leftBtn.text}</Text>
                     </TouchableOpacity>
                 }

@@ -1,7 +1,7 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import moment from 'moment';
 import Card from "./Card";
-import { Size, COLOR } from "@/constants";
+import { SIZE, COLOR } from "@/constants";
 import { Interaction } from "@/utilities";
 interface ItemProps {
     id: string;
@@ -33,7 +33,7 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
                     fillColor={COLOR.SUCCESS}
                     isChecked={complete}
                     onPress={toggle}
-                    size={Size.Icon.lg}
+                    size={SIZE.ICON.LG}
                     textContainerStyle={{
                         marginLeft: 0
                     }}

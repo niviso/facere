@@ -1,7 +1,7 @@
-const Icon = {
-    sm: 12,
-    md: 16,
-    lg: 32
+const ICON = {
+    SM: 12,
+    MD: 16,
+    LG: 32
 } as const;
 
 const PADDING = {
@@ -16,11 +16,11 @@ const FONT = {
     LG: 32
 }
 
-const Size = {
-    Icon: Icon,
+const SIZE = {
+    ICON: ICON,
     PADDING: PADDING,
     FONT: FONT
 } as const;
 
 
-export default Size;
+export default SIZE;

@@ -5,7 +5,7 @@ import { Card, NavigationBar, Input } from "@/components";
 import { useState, useEffect } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {Size, COLOR} from "@/constants";
+import {SIZE, COLOR} from "@/constants";
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
 
@@ -58,14 +58,14 @@ export default function Home({ setView, view, data }: any) {
             gap: 5
         },
         baseText: {
-            fontSize: Size.FONT.MD,
+            fontSize: SIZE.FONT.MD,
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
             textDecorationLine: "line-through",
         },
         topText: {
-            fontSize: Size.FONT.MD,
+            fontSize: SIZE.FONT.MD,
             opacity: 0.5
         },
         wrapper: {
@@ -93,12 +93,12 @@ export default function Home({ setView, view, data }: any) {
             <ScrollView>
                 {
                     search.length == 0 && lists.length > 0 && lists.map((list: any) => {
-                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<Ionicons name="chevron-forward" size={Size.Icon.md} color={COLOR.BLACK} />
+                        return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<Ionicons name="chevron-forward" size={SIZE.ICON.MD} color={COLOR.BLACK} />
                         } />)
                     })}
                 {
                     search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList('SelectedList', list)} cta={<AntDesign name="right" size={Size.Icon.md} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList('SelectedList', list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color="black" />} />)
                     })}
             </ScrollView>
         </View>
