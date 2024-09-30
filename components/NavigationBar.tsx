@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ReactElement } from 'react';
 import { SIZE, COLOR } from "@/constants";
@@ -16,17 +16,16 @@ interface NavBarProps {
     children?: ReactElement;
 }
 export default function NavigationBar({ leftBtn, rightBtn, headlineElement, headlineText, children }: NavBarProps) {
-    const windowWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         wrapper: {
             paddingBottom: SIZE.SPACE.MD,
-            width: "100%",
+            width: SIZE.FILL,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
             height: 120,
-            paddingTop: 70
+            paddingTop: SIZE.SPACE.SAFEAREA
         },
         topWrapper: {
             paddingLeft: SIZE.SPACE.MD,
@@ -49,17 +48,17 @@ export default function NavigationBar({ leftBtn, rightBtn, headlineElement, head
         },
         headlineText: {
             textAlign: "center",
-            fontSize: leftBtn && rightBtn ? 22 : 32,
+            fontSize: leftBtn && rightBtn ? SIZE.FONT.MD : SIZE.FONT.LG,
             color: COLOR.BLACK,
             fontWeight: "bold",
-            maxWidth: windowWidth - 230 // 200 + 30 padding
+            maxWidth: SIZE.WINDOW_WIDTH - 230 // 200 + 30 padding
         },
         actionBtnText: {
             fontSize: SIZE.FONT.MD,
             color: COLOR.INFO
         },
-        rightIconPadding: { paddingRight: 5 },
-        leftIconPadding: { paddingRight: 5 },
+        rightIconPadding: { paddingRight: SIZE.SPACE.XS },
+        leftIconPadding: { paddingRight: SIZE.SPACE.XS },
     });
     return (
         <View style={styles.topWrapper}>

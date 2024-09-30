@@ -20,6 +20,10 @@
             "delete_data": "Delete all data",
             "created_by": "Created by @creator",
             "language": "Language"
+        },
+        "accessibility": {
+            "headline": "Accessability review",
+            "description": "Facere is an app designed with a strong accessibility mindset, ensuring it is usable by everyone, regardless of their abilities. The app integrates features like voice commands, screen readers, adjustable text sizes, and high-contrast modes to cater to users with visual, auditory, or motor impairments. By prioritizing inclusivity, Facere delivers an intuitive experience that empowers all users to navigate and interact seamlessly, demonstrating its commitment to accessibility at every level of design and functionality."
         }
     },
     "prompt": {
@@ -28,6 +32,13 @@
             "cancel": "Cancel",
             "title": "Delete all data for this app on this device",
             "subtitle": "Are you sure?"
+        },
+        "auth": {
+            "compatible": "This device is not compatible for biometric authentication",
+            "enabled": "This device doesn't have biometric authentication enabled",
+            "promp_message": "Unlock your lists",
+            "fallback": "",
+            "auth_error": "Authentication unsuccessful"
         }
     }
 }

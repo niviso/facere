@@ -18,7 +18,7 @@ interface CardProps {
 export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, textColor=COLOR.BLACK, onLongPress, inactive,onDelete }: CardProps) {
     const styles = StyleSheet.create({
         container: {
-            width: "100%",
+            width: SIZE.FILL,
             padding: SIZE.SPACE.SM,
             paddingLeft: SIZE.SPACE.MD,
             paddingRight: SIZE.SPACE.MD,
@@ -60,9 +60,9 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: 10,
+            padding: SIZE.SPACE.SM,
             width: 100,
-            height: "100%",
+            height: SIZE.FILL,
             backgroundColor: COLOR.ERROR,
         },
         swipableLeftButtonText: {
@@ -70,7 +70,7 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
             color: COLOR.WHITE
         },
         swipableLeftWrapper: {
-            height: "100%"
+            height: SIZE.FILL
         }
     });
         const trans = dragX.interpolate({

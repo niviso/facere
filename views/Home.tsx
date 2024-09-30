@@ -8,8 +8,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {SIZE, COLOR} from "@/constants";
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
+import type { ListItemProps, RouteProps } from "@/types";
 
-export default function Home({ setView, view, data }: any) {
+export default function Home({ setView, view, data }: RouteProps) {
     const [lists, setLists] = useState<any>([]);
     const [search, setSearch] = useState<string>("");
 
@@ -41,8 +42,8 @@ export default function Home({ setView, view, data }: any) {
     
     const styles = StyleSheet.create({
         container: {
-            width: "100%",
-            padding: 10,
+            width: SIZE.FILL,
+            padding: SIZE.SPACE.SM,
             borderBottomWidth: 1,
             borderColor: COLOR.BORDER_COLOR,
             display: "flex",
@@ -55,7 +56,7 @@ export default function Home({ setView, view, data }: any) {
             display: "flex",
             flexDirection: "column",
             width: "80%",
-            gap: 5
+            gap: SIZE.SPACE.XS
         },
         baseText: {
             fontSize: SIZE.FONT.MD,
@@ -69,7 +70,7 @@ export default function Home({ setView, view, data }: any) {
             opacity: 0.5
         },
         wrapper: {
-            width: "100%", height: "100%"
+            width: SIZE.FILL, height: SIZE.FILL
         },
     });
     function onDelete(id:string) {
@@ -79,7 +80,7 @@ export default function Home({ setView, view, data }: any) {
         Store.delete(id);
     }
 
-    function goToList(list) {
+    function goToList(list:ListItemProps) {
         Interaction.on();
         setView('SelectedList', list)
 

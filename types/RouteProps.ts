@@ -1,5 +1,10 @@
+type StringIndexedType = {
+    // Value type for string keys
+    [key: string]: string;
+};
+
 export default interface RouteProps{
     setView: Function;
-    data: object;
-    view: string;
+    data: StringIndexedType;
+    view: StringIndexedType;
 }

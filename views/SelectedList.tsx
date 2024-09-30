@@ -1,16 +1,17 @@
 import { Store, Interaction } from "@/utilities";
-import { List, NavigationBar,Input } from "@/components";
-import { useState, useEffect } from "react";
-import { ScrollView, Text,TouchableOpacity } from "react-native";
-import {t} from "locale";
+import { List, NavigationBar, Input } from "@/components";
+import { useState, useEffect, ReactElement } from "react";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
+import { t } from "locale";
 import * as Crypto from 'expo-crypto';
-
-export default function SelectedList({ setView, data }: any) {
-  const [list, setList] = useState<any>([]);
+import type { RouteProps, ListItemProps, ListProps } from "@/types";
+import { SIZE } from "@/constants";
+export default function SelectedList({ setView, data }: RouteProps) {
+  const [list, setList] = useState<ListProps | unknown>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [name, setName] = useState<string>(data.name);
-  
-  async function fetchList() {
+
+  async function fetchList():Promise<void> {
     const result = await Store.get(data.id);
     if (result) {
       setList(result);
@@ -23,12 +24,12 @@ export default function SelectedList({ setView, data }: any) {
   }, []);
 
   async function onSubmitNewItem(input: string) {
-    const newListItem = [{ id: Crypto.randomUUID(), text: input, timestamp: new Date(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
+    const newListItem: ListItemProps[] = [{ id: Crypto.randomUUID(), text: input, timestamp: (new Date()).toString(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list];
     setList(newListItem);
     Interaction.on();
     await Store.set(data.id, newListItem);
   }
-  async function updateList(name: string) {
+  async function updateList(name: string):Promise<void> {
     let result = await Store.get("lists");
     setShowEdit(false);
     for (let list of result) {
@@ -43,7 +44,7 @@ export default function SelectedList({ setView, data }: any) {
     await Store.set("lists", result);
   }
 
-  function toggleEdit() {
+  function toggleEdit(): void {
     if (showEdit) {
       Interaction.on();
       setShowEdit(false);
@@ -53,19 +54,19 @@ export default function SelectedList({ setView, data }: any) {
     }
   }
 
-  const HeadlineElement = () => {
+  const HeadlineElement = ():ReactElement => {
     return (
-      !showEdit ? <TouchableOpacity onLongPress={toggleEdit}><Text numberOfLines={1} style={{ fontSize: 22,fontWeight:"bold" }}>{name}</Text></TouchableOpacity> :
-        <Input style={{ fontSize: 22,fontWeight:"bold" }} value={name} onSubmitEditing={updateList} autoFocus />
+      !showEdit ? <TouchableOpacity onLongPress={toggleEdit}><Text numberOfLines={1} style={{ fontSize: SIZE.FONT.MD, fontWeight: "bold" }}>{name}</Text></TouchableOpacity> :
+        <Input style={{ fontSize: SIZE.FONT.MD, fontWeight: "bold" }} value={name} onSubmitEditing={updateList} autoFocus />
     )
   }
 
-  function goBack() {
+  function goBack():void {
     Interaction.success();
     setView("Home");
   }
   return (
-    <ScrollView style={{ width: "100%" }}>
+    <ScrollView style={{ width: SIZE.FILL }}>
       <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: goBack }} leftBtn={{ text: showEdit ? t("views.selectedLists.cancel") : t("views.selectedLists.edit"), onPress: toggleEdit }}>
         <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
       </NavigationBar>

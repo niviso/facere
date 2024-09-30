@@ -48,8 +48,8 @@ export default function List({data,list,setList}:any){
       }
       
       const styles = StyleSheet.create({
-        noItemsWrapper: { width: "100%", height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 },
-        noItemsText: { marginTop:20,fontSize: 24,fontWeight:"bold" }
+        noItemsWrapper: { width: SIZE.FILL, height: 500, flex: 1, alignItems: "center", justifyContent: "center",opacity: 0.3 },
+        noItemsText: { marginTop:SIZE.SPACE.MD,fontSize: SIZE.FONT.LG,fontWeight:"bold" }
       });
 
       return (

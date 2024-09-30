@@ -10,15 +10,16 @@ import type { RouteProps } from "@/types";
 
 export default function Settings({ setView }:RouteProps) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
+    const pickerData = [{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]
 
     const styles = StyleSheet.create({
         appDetailText: { fontSize: SIZE.FONT.SM, fontWeight: "bold", color: COLOR.BLACK },
-        appDescriptionWrapper: { padding: SIZE.SPACE.MD, opacity: 0.9, marginBottom: SIZE.SPACE.MD, gap: 10 },
+        appDescriptionWrapper: { padding: SIZE.SPACE.MD, opacity: 0.9, marginBottom: SIZE.SPACE.MD, gap: SIZE.SPACE.SM },
         appDescriptionText: { fontSize: SIZE.FONT.MD, color: COLOR.BLACK, height: "50%" },
         deleteBtnWrapper: { marginTop: SIZE.SPACE.MD }
     });
 
-    function deleteAllData() {
+    function deleteAllData():void {
         const title = t("prompt.wipe_data.prompt_title");
         const subtitle = t("prompt.wipe_data.prompt_subtitle");
         Alert.alert(title, subtitle, [
@@ -30,7 +31,6 @@ export default function Settings({ setView }:RouteProps) {
         ]);
 
     }
-    const pickerData = [{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]
     return (
         <View>
             <NavigationBar headlineText="Settings" leftBtn={{ icon: "accessibility-sharp", onPress: () => setView("Accessibility") }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
