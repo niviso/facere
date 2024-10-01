@@ -10,7 +10,10 @@
         "selectedList": {
             "back": "Back",
             "edit": "Edit",
-            "cancel": "Cancel"
+            "cancel": "Cancel",
+            "add_placeholder": "Add todo",
+            "english": "English",
+            "swedish": "Swedish"
         },
         "list": {
             "empty": "Empty list"

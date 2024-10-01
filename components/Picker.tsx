@@ -18,7 +18,7 @@ export default function Picker({ options, value, onUpdate }: any) {
     return (
         <View style={{ padding: 0 }}>
             <View style={{ paddingLeft: SIZE.SPACE.MD, paddingBottom: SIZE.SPACE.MD }}>
-                <Text style={{ fontSize: 22, fontWeight: "bold" }}>{t("view.settings.language")}</Text>
+                <Text style={{ fontSize: 22, fontWeight: "bold" }}>{t("views.settings.language")}</Text>
             </View>
             {options.map((option: any, index: number) => {
                 return (

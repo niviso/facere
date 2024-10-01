@@ -38,13 +38,13 @@ export default function Settings({ setView }:RouteProps) {
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
-                <Text style={styles.appDetailText}>{t("view.settings.created_by", [{ name: "creator", value: appData.expo.author }])}</Text>
+                <Text style={styles.appDetailText}>{t("views.settings.created_by", [{ name: "creator", value: appData.expo.author }])}</Text>
                 <Text style={styles.appDescriptionText}>
-                    {t("view.settings.intro")}
+                    {t("views.settings.intro")}
                 </Text>
             </View>
             <View style={styles.deleteBtnWrapper}>
-                <Button title={t("view.settings.delete_data")} onPress={deleteAllData} />
+                <Button title={t("views.settings.delete_data")} onPress={deleteAllData} />
             </View>
         </View>
     )

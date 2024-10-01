@@ -1,9 +1,17 @@
 import sv from "./sv.json";
 import en from "./en.json";
+import {LocaleProps} from "@/types";
 
-const locale:any = {
-    sv: sv,
-    en: en,
+const locales = [
+  "en",
+  "sv"
+];
+
+const locale:LocaleProps = {
+    locales: {
+      sv: sv,
+      en: en,
+    },
     lang: "sv",
     fallbackLang: "en",
 } as const;
@@ -26,21 +34,17 @@ function findDeepKey(obj:any, keyToFind:string):string | undefined {
       }
     }
 }
-interface LocaleVariable {
-  name: string;
-  value: string;
-}
 
 function t(key:string,variables?:any) {
     const slicedKey = key.split(".");
     let localeStr = "";
     if(slicedKey.length !== 0) {
-      localeStr = findDeepKey(locale[locale.lang],slicedKey[slicedKey.length - 1]) || findDeepKey(locale[locale.fallbackLang],slicedKey[slicedKey.length - 1]) || key
+      localeStr = findDeepKey(locale.locales[locale.lang],slicedKey[slicedKey.length - 1]) || findDeepKey(locale.locales[locale.fallbackLang],slicedKey[slicedKey.length - 1]) || key
     } else {
-      localeStr = locale[locale.lang][key] || locale[locale.fallbackLang][key] || key
+      localeStr = locale.locales[locale.lang][key] || locale.locales[locale.fallbackLang][key] || key
     }
     if(variables) {
-      variables.forEach((variable) => {
+      variables.forEach((variable:Record<string , any>) => {
         localeStr = localeStr.replace(`@${variable.name}`,variable.value);
       });
     }
@@ -50,7 +54,7 @@ function t(key:string,variables?:any) {
 }
 
 function setLocale(lang:string) {
-    if(locale[lang]){
+    if(locale.locales[lang]){
         locale.lang = lang;
     } else {
         return false;

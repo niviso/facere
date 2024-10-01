@@ -68,7 +68,7 @@ export default function SelectedList({ setView, data }: RouteProps) {
   return (
     <ScrollView style={{ width: SIZE.FILL }}>
       <NavigationBar headlineElement={<HeadlineElement />} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: goBack }} leftBtn={{ text: showEdit ? t("views.selectedLists.cancel") : t("views.selectedLists.edit"), onPress: toggleEdit }}>
-        <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder="Add todo" />
+        <Input refocus={true} onSubmitEditing={onSubmitNewItem} placeholder={t("views.selectedList.add_placeholder")} />
       </NavigationBar>
       <List data={data} setList={setList} list={list} />
     </ScrollView>

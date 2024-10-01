@@ -9,9 +9,9 @@ export default function Accessibility({ setView }: RouteProps) {
         <View>
             <NavigationBar headlineText="Accessibility" leftBtn={{ text: "" }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Settings") }} />
             <View style={{ padding: SIZE.SPACE.MD }}>
-                <Text style={{ fontSize: SIZE.FONT.LG, fontWeight: "bold",marginBottom: SIZE.SPACE.MD }}>{t("view.accessibility.headline")}</Text>
+                <Text style={{ fontSize: SIZE.FONT.LG, fontWeight: "bold",marginBottom: SIZE.SPACE.MD }}>{t("views.accessibility.headline")}</Text>
                 <Text style={{ fontSize: SIZE.FONT.MD }}>
-                    {t("view.accessibility.description")}
+                    {t("views.accessibility.description")}
                 </Text>
                 <Text style={{ fontSize: SIZE.FONT.MD }}>
 
