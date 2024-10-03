@@ -7,6 +7,7 @@ import { setLocale, getLocale } from "locale";
 import appData from "../app.json";
 import { Store } from "@/utilities";
 import type { RouteProps } from "@/types";
+import moment from "moment";
 
 export default function Settings({ setView }:RouteProps) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
@@ -31,10 +32,11 @@ export default function Settings({ setView }:RouteProps) {
         ]);
 
     }
+
     return (
         <View>
-            <NavigationBar headlineText="Settings" leftBtn={{ icon: "accessibility-sharp", onPress: () => setView("Accessibility") }} rightBtn={{ text: t("views.selectedLists.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
-            <Picker options={pickerData} value={getLocale()} onUpdate={(option:string) => { setLocale(option); forceUpdate() }} />
+            <NavigationBar headlineText={t("views.settings.name")} leftBtn={{ icon: "accessibility-sharp", onPress: () => setView("Accessibility") }} rightBtn={{ text: t("views.selectedList.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
+            <Picker options={pickerData} value={getLocale()} onUpdate={(option:string) => { setLocale(option);moment.locale(option); forceUpdate() }} />
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>

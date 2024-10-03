@@ -5,6 +5,7 @@
             "subtitle": "Tryck var som helst för att låsa upp",
         },
         "home": {
+            "name": "Överblick",
             "create": "Skapa lista"
         },
         "selectedList": {
@@ -17,6 +18,7 @@
             "empty": "Tom lista"
         },
         "settings": {
+            "name": "Inställningar",
             "intro": "Alla dina uppgifter, anteckningar och personliga data är helt krypterade med hjälp av avancerade säkerhetsprotokoll, vilket säkerställer att bara du kan komma åt dem. Data lagras säkert på din enhet, delas aldrig eller synkroniseras till externa servrar, vilket skyddar din information från obehörig åtkomst. Oavsett om det är arbetsuppgifter eller personliga påminnelser erbjuder SecureTasks en sömlös och säker miljö som håller din information säker och privat hela tiden.",
             "delete_data": "Radera all data",
             "created_by": "Skapad av @creator",
@@ -25,6 +27,8 @@
             "swedish": "Svenska"
         },
         "accessibility": {
+            "back": "Tillbaka",
+            "name": "Tillgänglighet",
             "headline": "Tillgänglighetsgranskning",
             "description": "Facere är en app designad med ett starkt tillgänglighetstänk, som säkerställer att den är användbar av alla, oavsett deras förmåga. Appen integrerar funktioner som röstkommandon, skärmläsare, justerbara textstorlekar och högkontrastlägen för att tillgodose användare med syn-, hörsel- eller motoriska funktionsnedsättningar. Genom att prioritera inkludering, levererar Facere en intuitiv upplevelse som ger alla användare möjlighet att navigera och interagera sömlöst, vilket visar sitt engagemang för tillgänglighet på alla nivåer av design och funktionalitet."
         }

@@ -5,6 +5,7 @@
             "subtitle": "Press anywhere to unlock"
         },
         "home": {
+            "name": "Home",
             "create": "Create list"
         },
         "selectedList": {
@@ -19,12 +20,14 @@
             "empty": "Empty list"
         },
         "settings": {
+            "name": "Settings",
             "intro": "All your tasks, notes, and personal data are fully encrypted using advanced security protocols, ensuring that only you can access them. Data is securely stored on your device, never shared or synced to external servers, protecting your information from unauthorized access. Whether it's work tasks or personal reminders, SecureTasks offers a seamless and secure environment, keeping your information safe and private at all times.",
             "delete_data": "Delete all data",
             "created_by": "Created by @creator",
             "language": "Language"
         },
         "accessibility": {
+            "name": "Accessibility",
             "headline": "Accessability review",
             "description": "Facere is an app designed with a strong accessibility mindset, ensuring it is usable by everyone, regardless of their abilities. The app integrates features like voice commands, screen readers, adjustable text sizes, and high-contrast modes to cater to users with visual, auditory, or motor impairments. By prioritizing inclusivity, Facere delivers an intuitive experience that empowers all users to navigate and interact seamlessly, demonstrating its commitment to accessibility at every level of design and functionality."
         }

@@ -2,11 +2,6 @@ import sv from "./sv.json";
 import en from "./en.json";
 import {LocaleProps} from "@/types";
 
-const locales = [
-  "en",
-  "sv"
-];
-
 const locale:LocaleProps = {
     locales: {
       sv: sv,
@@ -18,7 +13,7 @@ const locale:LocaleProps = {
 
 
 
-function findDeepKey(obj:any, keyToFind:string):string | undefined {
+function findDeepKey(obj:Record<string, undefined>, keyToFind:string):string | undefined {
     // Loop through each key in the object
     for (let key in obj) {
       if (key === keyToFind) {
@@ -35,14 +30,26 @@ function findDeepKey(obj:any, keyToFind:string):string | undefined {
     }
 }
 
-function t(key:string,variables?:any) {
-    const slicedKey = key.split(".");
-    let localeStr = "";
-    if(slicedKey.length !== 0) {
-      localeStr = findDeepKey(locale.locales[locale.lang],slicedKey[slicedKey.length - 1]) || findDeepKey(locale.locales[locale.fallbackLang],slicedKey[slicedKey.length - 1]) || key
-    } else {
-      localeStr = locale.locales[locale.lang][key] || locale.locales[locale.fallbackLang][key] || key
+
+function lookForKeyInObj(key:string, obj:any) {
+  const slicedKey = key.split(".");
+  const slicedKeyTmp = slicedKey[0] || key;
+    for (let keyObj in obj) {
+      if(keyObj == slicedKeyTmp){
+        if(slicedKey.length == 1) {
+          return obj[slicedKeyTmp];
+        } else {
+          return lookForKeyInObj(key.substring(slicedKeyTmp.length + 1,key.length),obj[keyObj]);
+        }
+      }
     }
+
+    return null;
+}
+
+function t(key:string,variables?:Record<string , any>) {
+    let localeStr = lookForKeyInObj(key,locale.locales[locale.lang]) || lookForKeyInObj(key,locale.locales[locale.fallbackLang]) || key;
+    
     if(variables) {
       variables.forEach((variable:Record<string , any>) => {
         localeStr = localeStr.replace(`@${variable.name}`,variable.value);
