@@ -5,6 +5,7 @@
             "subtitle": "Tryck var som helst för att låsa upp",
         },
         "home": {
+            "settings": "Inställningar",
             "name": "Överblick",
             "create": "Skapa lista"
         },

@@ -88,7 +88,7 @@ export default function Home({ setView, view, data }: RouteProps) {
 
     return (
         <View style={styles.wrapper}>
-            <NavigationBar headlineText={view.route} leftBtn={{ text: t("views.home.create"), onPress: createList }}>
+            <NavigationBar headlineText={view.route} rightBtn={{ text: t("views.home.settings"), onPress: ()=>setView("Settings") }} leftBtn={{ text: t("views.home.create"), onPress: createList }}>
                 <Input placeholder="Search" onChangeText={setSearch} />
             </NavigationBar>
             <ScrollView>

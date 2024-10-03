@@ -5,6 +5,7 @@
             "subtitle": "Press anywhere to unlock"
         },
         "home": {
+            "settings": "Settings",
             "name": "Home",
             "create": "Create list"
         },

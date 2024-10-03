@@ -9,7 +9,7 @@ import {getLocale} from "locale";
 moment.locale(getLocale());
 
 export default function App() {
-  const [view,setView] = useState<any>({route: "Accessibility",data:{}});
+  const [view,setView] = useState<any>({route: "Home",data:{}});
   /*
   add to info.plist
   <key>NSFaceIDUsageDescription</key>
