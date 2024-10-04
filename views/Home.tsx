@@ -93,12 +93,12 @@ export default function Home({ setView, view, data }: RouteProps) {
             </NavigationBar>
             <ScrollView>
                 {
-                    search.length == 0 && lists.length > 0 && lists.map((list: any) => {
+                    search.length == 0 && lists.length > 0 && lists.map((list: ListProps) => {
                         return (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<Ionicons name="chevron-forward" size={SIZE.ICON.MD} color={COLOR.BLACK} />
                         } />)
                     })}
                 {
-                    search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
+                    search.length !== 0 && lists.length > 0 && lists.map((list: ListProps) => {
                         return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color={COLOR.BLACK} />} />)
                     })}
             </ScrollView>

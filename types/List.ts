@@ -6,12 +6,15 @@ type ListItemProps = {
     complete: boolean;
     hasBeenUpdated: boolean;
     isImportant: boolean;
-
-
 };
 
+interface List {
+    id: string;
+    name: string;
+    timeStamp: string;
+}
 interface ListProps {
     [key: string]: ListItemProps;
 }
 
-export type { ListItemProps, ListProps }
+export type { List, ListItemProps, ListProps }

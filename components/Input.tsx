@@ -3,18 +3,18 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { COLOR, SIZE } from "@/constants";
 export default function Input({ value, placeholder, onSubmitEditing, onChangeText, style, autoFocus, refocus }: any) {
     const [input, setInput] = useState<string>(value);
-    const inputRef = useRef(null);
+    const inputRef = useRef<TextInput>(null);
     function update(inputStr: string) {
         setInput(inputStr);
         onChangeText && onChangeText(inputStr);
 
     }
-    function submit(e) {
+    function submit(e:Event) {
         onSubmitEditing(input);
         setInput("");
         if (refocus) {
             setTimeout(() => {
-                inputRef.current.focus();
+                inputRef.current && inputRef.current.focus();
             }, 1);
         }
     }
