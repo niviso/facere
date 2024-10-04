@@ -25,10 +25,10 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
             paddingLeft: SIZE.SPACE.MD,
             borderRadius: SIZE.SPACE.MD,
             backgroundColor: COLOR.BORDER_COLOR,
-        }
+        },
     });
     return (
-        <View style={{ position: "relative" }}>
+        <View>
             <TextInput
                 style={style ? style : styles.input}
                 ref={inputRef}
