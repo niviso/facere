@@ -4,6 +4,7 @@ import {Item} from "./Item";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {SIZE} from "@/constants";
 import {t} from "locale";
+import moment from "moment";
 export default function List({data,list,setList}:any){
     async function save(obj: any) {
         await Store.set(data.id, obj);
@@ -15,7 +16,7 @@ export default function List({data,list,setList}:any){
           if (item.id == id) {
             item.complete = value;
             item.hasBeenUpdated = true;
-            item.timestamp = new Date();
+            item.timestamp = moment().format();
             setList(tmpList);
             save(tmpList);
             return;
@@ -35,7 +36,7 @@ export default function List({data,list,setList}:any){
           if (item.id == id) {
             item.isImportant = !item.isImportant;
             item.hasBeenUpdated = true;
-            item.timestamp = new Date();
+            item.timestamp = moment().format();
             if (item.isImportant) {
               Interaction.on();
             } else {

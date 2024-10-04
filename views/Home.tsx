@@ -27,12 +27,12 @@ export default function Home({ setView, view, data }: RouteProps) {
     }
 
     function createList() {
-        const obj = { id: Crypto.randomUUID(), name: `New List ${lists.length + 1}`, timestamp: new Date() };
-        let result = [...lists, obj];
+        const newList = { id: Crypto.randomUUID(), name: `New List ${lists.length + 1}`, timestamp:moment().format() };
+        let result = [...lists, newList];
         setLists(result);
         save(result);
         Interaction.success();
-        setView("SelectedList", obj);
+        setView("SelectedList", newList);
         
     }
 
@@ -99,7 +99,7 @@ export default function Home({ setView, view, data }: RouteProps) {
                     })}
                 {
                     search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList('SelectedList', list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color="black" />} />)
                     })}
             </ScrollView>
         </View>

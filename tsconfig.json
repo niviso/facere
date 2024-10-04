@@ -3,6 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "./",
+    "lib": [
+            "es5", "es6", "dom", "dom.iterable"
+    ],
     "paths": {
       "@/components": ["./components/"],
       "@/constants": ["./constants/"],
