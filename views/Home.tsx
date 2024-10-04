@@ -88,7 +88,7 @@ export default function Home({ setView, view, data }: RouteProps) {
 
     return (
         <View style={styles.wrapper}>
-            <NavigationBar headlineText={view.route} rightBtn={{ text: t("views.home.settings"), onPress: ()=>setView("Settings") }} leftBtn={{ text: t("views.home.create"), onPress: createList }}>
+            <NavigationBar headlineText={t("views.home.name")} rightBtn={{ text: t("views.home.settings"), onPress: ()=>setView("Settings") }} leftBtn={{ text: t("views.home.create"), onPress: createList }}>
                 <Input placeholder="Search" onChangeText={setSearch} />
             </NavigationBar>
             <ScrollView>
@@ -99,7 +99,7 @@ export default function Home({ setView, view, data }: RouteProps) {
                     })}
                 {
                     search.length !== 0 && lists.length > 0 && lists.map((list: any) => {
-                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color="black" />} />)
+                        return list.name.toLowerCase().includes(search.toLowerCase()) && (<Card onDelete={onDelete} key={list.id} id={list.id} eyebrow={moment(list.timestamp).fromNow()} text={list.name} onPress={() => goToList(list)} cta={<AntDesign name="right" size={SIZE.ICON.MD} color={COLOR.BLACK} />} />)
                     })}
             </ScrollView>
         </View>
