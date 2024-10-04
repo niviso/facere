@@ -8,7 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {SIZE, COLOR, ROUTES} from "@/constants";
 import {t} from "locale";
 import * as Crypto from 'expo-crypto';
-import type { RouteProps,SelectedListProps } from "@/types";
+import type { RouteProps,ListProps,SelectedListProps } from "@/types";
 
 export default function Home({ setView, view, data }: RouteProps) {
     const [lists, setLists] = useState<SelectedListProps[]>([]);
@@ -19,7 +19,7 @@ export default function Home({ setView, view, data }: RouteProps) {
     }
 
     async function fetchList():Promise<void> {
-        const result = await Store.get("lists");
+        const result = await Store.get("lists") as SelectedListProps;
         if (result) {
             setLists(result);
         }

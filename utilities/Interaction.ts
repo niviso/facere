@@ -1,20 +1,20 @@
 import * as Haptics from 'expo-haptics';
 
 const Interaction = {
-    success: () => {
+    success: (): void => {
         Haptics.notificationAsync(
             Haptics.NotificationFeedbackType.Success
         )
     },
-    delete: () => {
+    delete: (): void => {
         Haptics.notificationAsync(
             Haptics.NotificationFeedbackType.Warning
           )
     },
-    on: () => {
+    on: (): void => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
     },
-    off: () => {
+    off: (): void => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
     }
 

@@ -4,11 +4,11 @@ import { useState, useEffect, ReactElement } from "react";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import { t } from "locale";
 import * as Crypto from 'expo-crypto';
-import type { RouteProps, ListItem, ListProps } from "@/types";
+import type { RouteProps, ListItem,SelectedListProps } from "@/types";
 import { SIZE } from "@/constants";
 import moment from "moment";
 export default function SelectedList({ setView, data }: RouteProps) {
-  const [list, setList] = useState<ListProps | unknown>([]);
+  const [list, setList] = useState<ListItem[]>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [name, setName] = useState<string>(data.name);
 
@@ -31,13 +31,12 @@ export default function SelectedList({ setView, data }: RouteProps) {
     await Store.set(data.id, newListItem);
   }
   async function updateList(name: string): Promise<void> {
-    let result = await Store.get("lists");
+    let result = await Store.get("lists") as SelectedListProps[];
     setShowEdit(false);
     for (let list of result) {
       if (list.id == data.id) {
         list.name = name;
-        list.hasBeenUpdated = true;
-        list.timestamp = moment().format();
+        list.timeStamp = moment().format();
         setName(name);
         toggleEdit();
       }

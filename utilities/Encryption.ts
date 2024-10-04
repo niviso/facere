@@ -3,12 +3,12 @@ import * as SecureStore from 'expo-secure-store';
 import * as Crypto from 'expo-crypto';
 
 const Encryption = {
-    encrypt: async (value:string) => {
+    encrypt: async (value:string): Promise<string> => {
         const encryptionKey = await getEncryptionKey();
         const result = CryptoES.AES.encrypt(value, encryptionKey);
         return JSON.stringify(result);
     },
-    decrypt: async (encrypted:Object) => {
+    decrypt: async (encrypted:Object): Promise<string> => {
         const encryptionKey = await getEncryptionKey();
         const decrypted =  CryptoES.AES.decrypt(encrypted, encryptionKey);
         return decrypted.toString(CryptoES.enc.Utf8);
