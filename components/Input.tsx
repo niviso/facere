@@ -12,6 +12,11 @@ export default function Input({ value, placeholder, onSubmitEditing, onChangeTex
     function submit(e) {
         onSubmitEditing(input);
         setInput("");
+        if (refocus) {
+            setTimeout(() => {
+                inputRef.current.focus();
+            }, 1);
+        }
     }
 
     const styles = StyleSheet.create({
