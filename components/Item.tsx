@@ -22,24 +22,23 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
             Interaction.on();
         } else {
             Interaction.off();
-            
+
         }
         toggleItemComplete(value, id);
     }
     return (
-        <Card id={id} textColor={isImportant ? COLOR.WHITE : COLOR.BLACK}
-            onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.BLACK : COLOR.WHITE} onLongPress={() => toggleImportant(id)} cta={
-                <BouncyCheckbox
-                    fillColor={COLOR.SUCCESS}
-                    isChecked={complete}
-                    onPress={toggle}
-                    size={SIZE.ICON.LG}
-                    textContainerStyle={{
-                        marginLeft: 0
-                    }}
-                    style={{ marginLeft: 0, marginRight: 0 }}
-                />} />
-    )
+        <Card id={id} textColor={isImportant ? COLOR.WHITE : COLOR.BLACK} onDelete={onDelete} text={text} eyebrow={moment(timestamp).fromNow()} inactive={complete} backgroundColor={isImportant ? COLOR.BLACK : COLOR.WHITE} onLongPress={() => toggleImportant(id)} cta={
+            <BouncyCheckbox
+                fillColor={COLOR.SUCCESS}
+                isChecked={complete}
+                onPress={toggle}
+                size={SIZE.ICON.LG}
+                textContainerStyle={{
+                    marginLeft: 0
+                }}
+                style={{ marginLeft: 0, marginRight: 0 }}
+            />} />
+    );
 }
 
 export { ItemProps, Item }

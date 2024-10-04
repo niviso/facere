@@ -4,7 +4,7 @@ import { useState, useEffect, ReactElement } from "react";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import { t } from "locale";
 import * as Crypto from 'expo-crypto';
-import type { RouteProps, ListItemProps, ListProps } from "@/types";
+import type { RouteProps, ListItem, ListProps } from "@/types";
 import { SIZE } from "@/constants";
 import moment from "moment";
 export default function SelectedList({ setView, data }: RouteProps) {
@@ -25,7 +25,7 @@ export default function SelectedList({ setView, data }: RouteProps) {
   }, []);
 
   async function onSubmitNewItem(input: string) {
-    const newListItem: ListItemProps[] = [{ id: Crypto.randomUUID(), text: input, timestamp: moment().format(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list as ListItemProps[]];
+    const newListItem: ListItem[] = [{ id: Crypto.randomUUID(), text: input, timestamp: moment().format(), complete: false, hasBeenUpdated: false, isImportant: false }, ...list as ListItem[]];
     setList(newListItem);
     Interaction.on();
     await Store.set(data.id, newListItem);

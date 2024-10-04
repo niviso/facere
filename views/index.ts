@@ -4,7 +4,7 @@ import Start from "./Start";
 import Settings from "./Settings";
 import Accessibility from "./Accessibility";
 
-const Router = [
+const Router:Function[] = [
     Accessibility,
     Start,
     Home,

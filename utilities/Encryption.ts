@@ -8,7 +8,7 @@ const Encryption = {
         const result = CryptoES.AES.encrypt(value, encryptionKey);
         return JSON.stringify(result);
     },
-    decrypt: async (encrypted:any) => {
+    decrypt: async (encrypted:Object) => {
         const encryptionKey = await getEncryptionKey();
         const decrypted =  CryptoES.AES.decrypt(encrypted, encryptionKey);
         return decrypted.toString(CryptoES.enc.Utf8);

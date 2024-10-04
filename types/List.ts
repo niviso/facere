@@ -1,4 +1,4 @@
-type ListItemProps = {
+type ListItem = {
     // Value type for string keys
     id: string;
     text: string;
@@ -8,13 +8,19 @@ type ListItemProps = {
     isImportant: boolean;
 };
 
-interface List {
+interface SelectedListProps {
     id: string;
     name: string;
     timeStamp: string;
 }
 interface ListProps {
-    [key: string]: ListItemProps;
+    [key: string]: ListItem;
 }
 
-export type { List, ListItemProps, ListProps }
+interface ListViewProps {
+    data: Object;
+    list: SelectedListProps;
+    setList: Function;
+}
+
+export type { SelectedListProps, ListItem, ListProps, ListViewProps }

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Encryption from "./Encryption";
 const Store = {
     baseKey: "@facere/",
-    set: async (key:string,data:any) => {
+    set: async (key:string,data:Object) => {
         try {
             const jsonValue = JSON.stringify(data);
             const encryptedData = await Encryption.encrypt(jsonValue);

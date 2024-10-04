@@ -1,19 +1,7 @@
-import { ReactElement } from "react";
 import { View, Text, TouchableOpacity, StyleSheet,Animated } from "react-native";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {COLOR, SIZE} from "@/constants";
-interface CardProps {
-    id: string;
-    eyebrow?: string;
-    text: string;
-    cta?: ReactElement;
-    onPress?: Function | any;
-    backgroundColor?: string;
-    onLongPress?: Function | any;
-    inactive?: boolean;
-    onDelete: Function;
-    textColor?: string;
-}
+import {CardProps} from "@/types";
 
 export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, textColor=COLOR.BLACK, onLongPress, inactive,onDelete }: CardProps) {
     const styles = StyleSheet.create({
@@ -55,24 +43,24 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
         }
     });
     const renderLeftActions = (progress: any, dragX: any) => {
-            const styles = StyleSheet.create({
-        swipableLeftButton: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: SIZE.SPACE.SM,
-            width: 100,
-            height: SIZE.FILL,
-            backgroundColor: COLOR.ERROR,
-        },
-        swipableLeftButtonText: {
-            fontSize: SIZE.FONT.MD,
-            color: COLOR.WHITE
-        },
-        swipableLeftWrapper: {
-            height: SIZE.FILL
-        }
-    });
+        const styles = StyleSheet.create({
+            swipableLeftButton: {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: SIZE.SPACE.SM,
+                width: 100,
+                height: SIZE.FILL,
+                backgroundColor: COLOR.ERROR,
+            },
+            swipableLeftButtonText: {
+                fontSize: SIZE.FONT.MD,
+                color: COLOR.WHITE
+            },
+            swipableLeftWrapper: {
+                height: SIZE.FILL
+            }
+        });
         const trans = dragX.interpolate({
             inputRange: [0, 100, 100, 101],
             outputRange: [-100, 0, 0, 1],

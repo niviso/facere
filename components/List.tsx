@@ -5,8 +5,9 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {SIZE} from "@/constants";
 import {t} from "locale";
 import moment from "moment";
-export default function List({data,list,setList}:any){
-    async function save(obj: any) {
+import { ListItem, ListViewProps } from 'types';
+export default function List({data,list,setList}:ListViewProps){ //Create type
+    async function save(obj: Object) {
         await Store.set(data.id, obj);
       }
     
@@ -25,7 +26,7 @@ export default function List({data,list,setList}:any){
       }
     
       function deleteItem(id: string) {
-        const result = list.filter((item:any) => item.id !== id);
+        const result = list.filter((item:ListItem) => item.id !== id);
         setList(result);
         save(result);
       }
