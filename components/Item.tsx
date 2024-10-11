@@ -15,7 +15,7 @@ interface ItemProps {
     toggleImportant: Function;
 }
 
-function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated, isImportant, onDelete, toggleImportant }: ItemProps) {
+export default function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdated, isImportant, onDelete, toggleImportant }: ItemProps) {
 
     function toggle(value: boolean) {
         if (value) {
@@ -40,5 +40,3 @@ function Item({ id, text, timestamp, complete, toggleItemComplete, hasBeenUpdate
             />} />
     );
 }
-
-export { ItemProps, Item }

@@ -6,7 +6,7 @@ import {t} from "locale";
 import type { RouteProps } from "@/types";
 
 export default function Start({ setView }:RouteProps) {
-    async function unlock() {
+    async function unlock():Promise<void> {
 
         const compatible = await LocalAuthentication.hasHardwareAsync()
         if (!compatible) throw t("auth.compatible")

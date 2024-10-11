@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity, StyleSheet,Animated } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import {COLOR, SIZE} from "@/constants";
-import {CardProps} from "@/types";
+import { COLOR, SIZE } from "@/constants";
+import { CardProps } from "@/types";
 
-export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, textColor=COLOR.BLACK, onLongPress, inactive,onDelete }: CardProps) {
+export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor, textColor = COLOR.BLACK, onLongPress, inactive, onDelete }: CardProps) {
     const styles = StyleSheet.create({
         container: {
             width: SIZE.FILL,
@@ -77,15 +77,15 @@ export default function Card({ id, eyebrow, text, cta, onPress, backgroundColor,
     };
     return (
         <Swipeable renderLeftActions={renderLeftActions}>
-        <TouchableOpacity id={id} style={styles.container} onPress={onPress} onLongPress={onLongPress}>
-            <View style={styles.innerContainer}>
-                <Text style={styles.eyebrowText}>{eyebrow}</Text>
-                <Text numberOfLines={1} style={styles.mainText}>{text}</Text>
-            </View>
-            <View>
-                {cta}
-            </View>
-        </TouchableOpacity>
+            <TouchableOpacity id={id} style={styles.container} onPress={onPress} onLongPress={onLongPress}>
+                <View style={styles.innerContainer}>
+                    <Text style={styles.eyebrowText}>{eyebrow}</Text>
+                    <Text numberOfLines={1} style={styles.mainText}>{text}</Text>
+                </View>
+                <View>
+                    {cta}
+                </View>
+            </TouchableOpacity>
         </Swipeable>
     )
 

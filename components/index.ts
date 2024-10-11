@@ -1,4 +1,4 @@
-import { Item, ItemProps } from "./Item";
+import Item from "./Item";
 import List from "./List";
 import Card from "./Card";
 import NavigationBar from "./NavigationBar";
