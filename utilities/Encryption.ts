@@ -15,7 +15,7 @@ const Encryption = {
     }
 };
 
-async function getEncryptionKey():Promise<string> {
+async function getEncryptionKey():Promise<string> { // Lägg till salthash
     const key = await SecureStore.getItemAsync("facere-encryption-key");
     if(key) {
         return key;

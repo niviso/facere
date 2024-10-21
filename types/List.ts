@@ -18,7 +18,7 @@ interface ListProps {
 }
 
 interface ListViewProps {
-    data: Object;
+    data: any;
     list: ListItem[];
     setList: Function;
 }

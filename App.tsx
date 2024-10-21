@@ -8,7 +8,7 @@ import moment from "moment";
 import {getLocale} from "locale";
 import type {ViewStateProps} from "@/types";
 import { ROUTES } from "@/constants";
-
+import { Interaction } from '@/utilities';
 moment.locale(getLocale());
 
 export default function App() {
@@ -19,11 +19,13 @@ export default function App() {
   <string>Allow $(PRODUCT_NAME) to use FaceID</string>
   */
   function updateView(route:string,data:Record<string , unknown>){
+    Interaction.on();
     setView({route: route,data:data,history:[route,...view.history as string[]]});
   }
 
-  function goBack(data:Record<string, unknown>):void {
-    const reduceHistory = view.history.pop() || ["aa"];
+  function goBack(data:Record<string, unknown>):void { //Create a router object with functions in it and send to view
+    Interaction.off();
+    const reduceHistory:string[] = view.history.slice(0,view.history.length - 1) || [];
     setView({route: view.history[0],data:data,history:reduceHistory});
 
   }

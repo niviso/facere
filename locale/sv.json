@@ -7,7 +7,8 @@
         "home": {
             "settings": "Inställningar",
             "name": "Överblick",
-            "create": "Skapa lista"
+            "create": "Skapa lista",
+            "searchPlaceholder": "Sök"
         },
         "selectedList": {
             "back": "Tillbaka",

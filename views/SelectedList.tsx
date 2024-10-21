@@ -4,16 +4,16 @@ import { useState, useEffect, ReactElement } from "react";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import { t } from "locale";
 import * as Crypto from 'expo-crypto';
-import type { RouteProps, ListItem,SelectedListProps } from "@/types";
+import type { RouteProps, ListItem,ListProps } from "@/types";
 import { SIZE } from "@/constants";
 import moment from "moment";
 export default function SelectedList({ setView, data }: RouteProps) {
-  const [list, setList] = useState<ListItem[]>([]);
+  const [list, setList] = useState<ListItem[] | null[]>([]);
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [name, setName] = useState<string>(data.name);
 
   async function fetchList(): Promise<void> {
-    const result = await Store.get(data.id);
+    const result:ListItem[] = await Store.get(data.id) as ListItem[];
     if (result) {
       setList(result);
     }
@@ -31,7 +31,7 @@ export default function SelectedList({ setView, data }: RouteProps) {
     await Store.set(data.id, newListItem);
   }
   async function updateList(name: string): Promise<void> {
-    let result = await Store.get("lists") as SelectedListProps[];
+    let result = await Store.get("lists") as ListItem[];
     setShowEdit(false);
     for (let list of result) {
       if (list.id == data.id) {

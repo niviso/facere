@@ -1,12 +1,12 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { Store,Interaction } from"@/utilities";
-import {Item} from "./Item";
+import Item from "./Item";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {SIZE} from "@/constants";
 import {t} from "locale";
 import moment from "moment";
 import { ListItem, ListViewProps } from 'types';
-export default function List({data,list,setList}:ListViewProps){ //Create type
+export default function List({data,list,setList}:ListViewProps){
     async function save(obj: Object) {
         await Store.set(data.id, obj);
       }
