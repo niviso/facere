@@ -8,7 +8,7 @@
             "settings": "Settings",
             "name": "Home",
             "create": "Create list",
-            "searchPlaceholder": "search"
+            "searchPlaceholder": "Search"
         },
         "selectedList": {
             "back": "Back",

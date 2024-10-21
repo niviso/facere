@@ -9,10 +9,12 @@ import {getLocale} from "locale";
 import type {ViewStateProps} from "@/types";
 import { ROUTES } from "@/constants";
 import { Interaction } from '@/utilities';
+import { OnBoarding } from "./onboarding";
 moment.locale(getLocale());
 
 export default function App() {
   const [view,setView] = useState<ViewStateProps>({route: ROUTES.HOME,data:{},history:[]});
+  const [onboardingCompleted,setOnboardingCompleted] = useState<boolean>(false);
   /*
   add to info.plist
   <key>NSFaceIDUsageDescription</key>
@@ -33,11 +35,14 @@ export default function App() {
   return (
     <GestureHandlerRootView>
       <StatusBar style="dark" />
-      {Router.map((Component:any,index:number) => { // I AM SORRY
+      {onboardingCompleted ? Router.map((Component:any,index:number) => { // I AM SORRY
           if(Component.name == view.route){
           return <View key={index}><Component view={view} setView={updateView} data={view.data} /></View>
           }
-      })}
+      })
+      :
+      <OnBoarding/>
+    }
     </GestureHandlerRootView>
   );
 }
