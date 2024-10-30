@@ -39,7 +39,7 @@ export default function Settings({ setView }: RouteProps) {
             <Picker options={pickerData} value={getLocale()} onUpdate={(option: string) => { setLocale(option); moment.locale(option); forceUpdate() }} />
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
-                <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
+                <Text style={styles.appDetailText}>{t("views.settings.version", [{ name: "version", value: appData.expo.version }])}</Text>
                 <Text style={styles.appDetailText}>{t("views.settings.created_by", [{ name: "creator", value: appData.expo.author }])}</Text>
                 <Text style={styles.appDescriptionText}>
                     {t("views.settings.intro")}

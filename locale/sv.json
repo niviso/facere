@@ -29,7 +29,8 @@
             "created_by": "Skapad av @creator",
             "language": "Språk",
             "english": "Engelska",
-            "swedish": "Svenska"
+            "swedish": "Svenska",
+            "version": "Version @version"
         },
         "accessibility": {
             "back": "Tillbaka",
