@@ -5,7 +5,7 @@ import { ScrollView, Text, TouchableOpacity } from "react-native";
 import { t } from "locale";
 import * as Crypto from 'expo-crypto';
 import type { RouteProps, ListItem,ListProps } from "@/types";
-import { SIZE } from "@/constants";
+import { SIZE,ROUTES } from "@/constants";
 import moment from "moment";
 export default function SelectedList({ setView, data }: RouteProps) {
   const [list, setList] = useState<ListItem[] | null[]>([]);
@@ -63,7 +63,7 @@ export default function SelectedList({ setView, data }: RouteProps) {
 
   function goBack(): void {
     Interaction.success();
-    setView("Home");
+    setView(ROUTES.HOME);
   }
   return (
     <ScrollView style={{ width: SIZE.FILL }}>

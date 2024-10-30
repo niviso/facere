@@ -1,13 +1,13 @@
-import { View, Text, Button, StyleSheet, Alert } from "react-native";
+import { View, Text } from "react-native";
 import { t } from "locale";
 import { NavigationBar } from "@/components";
 import type { RouteProps } from "@/types";
-import { SIZE } from "@/constants";
+import { SIZE, ROUTES } from "@/constants";
 
 export default function Accessibility({ setView }: RouteProps) {
     return (
         <View>
-            <NavigationBar headlineText="Accessibility" leftBtn={{ text: "" }} rightBtn={{ text: t("views.selectedList.back"), icon: "chevron-back", onPress: () => setView("Settings") }} />
+            <NavigationBar headlineText="Accessibility" leftBtn={{ text: "" }} rightBtn={{ text: t("views.selectedList.back"), icon: "chevron-back", onPress: () => setView(ROUTES.SETTINGS) }} />
             <View style={{ padding: SIZE.SPACE.MD }}>
                 <Text style={{ fontSize: SIZE.FONT.LG, fontWeight: "bold",marginBottom: SIZE.SPACE.MD }}>{t("views.accessibility.headline")}</Text>
                 <Text style={{ fontSize: SIZE.FONT.MD }}>

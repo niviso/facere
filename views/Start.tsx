@@ -1,7 +1,7 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication';
 import Fontisto from '@expo/vector-icons/Fontisto';
-import { COLOR, SIZE } from "@/constants";
+import { COLOR, SIZE, ROUTES } from "@/constants";
 import {t} from "locale";
 import type { RouteProps } from "@/types";
 
@@ -16,7 +16,7 @@ export default function Start({ setView }:RouteProps) {
         if (!result.success) throw t("auth.auth_error")
 
         if (result.success) {
-            setView("Home")
+            setView(ROUTES.HOME)
         }
     }
 

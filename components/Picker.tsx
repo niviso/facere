@@ -16,9 +16,9 @@ export default function Picker({ options, value, onUpdate }: any) {
         wrapper: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: SIZE.SPACE.MD, borderBottomWidth: 1, borderColor: COLOR.BORDER_COLOR },
     });
     return (
-        <View style={{ padding: 0 }}>
+        <View>
             <View style={{ paddingLeft: SIZE.SPACE.MD, paddingBottom: SIZE.SPACE.MD }}>
-                <Text style={{ fontSize: 22, fontWeight: "bold" }}>{t("views.settings.language")}</Text>
+                <Text style={{ fontSize: SIZE.FONT.MD, fontWeight: "bold" }}>{t("views.settings.language")}</Text>
             </View>
             {options.map((option: any, index: number) => {
                 return (

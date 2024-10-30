@@ -2,14 +2,14 @@ import { View, Text, Button, StyleSheet, Alert } from "react-native";
 import { t } from "locale";
 import { NavigationBar, Picker } from "@/components";
 import { useReducer } from "react";
-import { COLOR, SIZE } from "@/constants";
+import { COLOR, SIZE, ROUTES } from "@/constants";
 import { setLocale, getLocale } from "locale";
 import appData from "../app.json";
 import { Store } from "@/utilities";
 import type { RouteProps } from "@/types";
 import moment from "moment";
 
-export default function Settings({ setView }:RouteProps) {
+export default function Settings({ setView }: RouteProps) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
     const pickerData = [{ name: "English", value: "en" }, { name: "Svenska", value: "sv" }]
 
@@ -20,7 +20,7 @@ export default function Settings({ setView }:RouteProps) {
         deleteBtnWrapper: { marginTop: SIZE.SPACE.MD }
     });
 
-    function deleteAllData():void {
+    function deleteAllData(): void {
         const title = t("prompt.wipe_data.prompt_title");
         const subtitle = t("prompt.wipe_data.prompt_subtitle");
         Alert.alert(title, subtitle, [
@@ -35,8 +35,8 @@ export default function Settings({ setView }:RouteProps) {
 
     return (
         <View>
-            <NavigationBar headlineText={t("views.settings.name")} leftBtn={{ icon: "accessibility-sharp", onPress: () => setView("Accessibility") }} rightBtn={{ text: t("views.selectedList.back"), icon: "chevron-back", onPress: () => setView("Home") }} />
-            <Picker options={pickerData} value={getLocale()} onUpdate={(option:string) => { setLocale(option);moment.locale(option); forceUpdate() }} />
+            <NavigationBar headlineText={t("views.settings.name")} leftBtn={{ icon: "accessibility-sharp", onPress: () => setView(ROUTES.ACCESSIBILITY) }} rightBtn={{ text: t("views.selectedList.back"), icon: "chevron-back", onPress: () => setView(ROUTES.HOME) }} />
+            <Picker options={pickerData} value={getLocale()} onUpdate={(option: string) => { setLocale(option); moment.locale(option); forceUpdate() }} />
             <View style={styles.appDescriptionWrapper}>
                 <Text style={styles.appDetailText}>{appData.expo.name.toUpperCase()}</Text>
                 <Text style={styles.appDetailText}>Version {appData.expo.version}</Text>
