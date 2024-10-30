@@ -15,22 +15,11 @@ moment.locale(getLocale());
 export default function App() {
   const [view, setView] = useState<ViewStateProps>({ route: ROUTES.START, data: {}, history: [] });
   const [onboardingCompleted, setOnboardingCompleted] = useState<boolean>(true);
-
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const [appStateVisible, setAppStateVisible] = useState(AppState.currentState);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === 'active'
-      ) {
-        console.log('App has come to the foreground!');
-      }
-
-      appState.current = nextAppState;
-      setAppStateVisible(appState.current);
-      console.log('AppState', appState.current);
+      setAppStateVisible(nextAppState);
     });
 
     return () => {
